@@ -4,6 +4,7 @@ import MinimalLayout from "../layout/minimal/MinimalLayout";
 import PrivacyPolicy from '../pages/legal/PrivacyPolicy';
 import TermsOfService from '../pages/legal/TermsOfService';
 import AboutUs from '../pages/info/AboutUs';
+import ForwardLink from "../pages/links/ForwardLink";
 
 const CommonRoutes = {
     path: '/',
@@ -20,6 +21,10 @@ const CommonRoutes = {
       {
         path: 'info/about',
         element: <AboutUs />
+      },
+      {
+        path: ':linkId',
+        element: <ForwardLink />
       }
     ]
   };
