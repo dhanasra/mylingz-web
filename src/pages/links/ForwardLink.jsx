@@ -1,13 +1,22 @@
 import { Box, CircularProgress } from "@mui/material"
 import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import { linkData } from "../../network/firebase";
+import { getDocs } from "firebase/firestore";
 
 const ForwardLink = () => {
-  const navigate = useNavigate();
+  const { linkId } = useParams();
 
   useEffect(()=>{
-    window.location.replace('https://google.com');
-  }, [])
+    async function fetchData(){
+      const snapshots = await getDocs(linkData(linkId));
+      if(snapshots.docs.length>0){
+        const url = snapshots.docs[0].data().url;
+        window.location.replace(url)
+      }
+    }
+    fetchData();
+  },[linkId])
 
   return (
     <Box
