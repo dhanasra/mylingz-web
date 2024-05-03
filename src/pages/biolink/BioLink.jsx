@@ -1,10 +1,15 @@
 import { Avatar, Box, Button, Grid, InputLabel, OutlinedInput, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { bioData } from "../../network/firebase";
+import { analyticsData, bioData } from "../../network/firebase";
 import { getDocs } from "firebase/firestore";
 import AnimateButton from "../../components/AnimateButton";
 import { useTheme } from "@emotion/react";
+import Cookies from "js-cookie";
+import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
+
+
+let count = 0;
 
 const BioLink =()=>{
 
@@ -21,6 +26,20 @@ const BioLink =()=>{
       if(snapshots.docs.length>0){
         const newData = snapshots.docs[0].data();
         setData(newData);
+        const isVisited = Cookies.get("visited");
+        const visited = Cookies.get("history");
+        if(count===0 && !isVisited && newData.id && newData.bioId && visited==newData.bioId){
+          count++;
+          Cookies.set("visited", true);
+          Cookies.set("history", newData.bioId);
+          const location = await fetchDeviceLocation();
+          const data = {
+            dateTime: Date.now(),
+            device: getDeviceType(),
+            location: location
+          }
+          await addDoc( analyticsData(newData.id, `m/${newData.bioId}`), data);
+        }
       }
     }
     fetchData();

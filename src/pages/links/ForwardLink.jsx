@@ -1,8 +1,12 @@
 import { Box, CircularProgress } from "@mui/material"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { linkData } from "../../network/firebase";
-import { getDocs } from "firebase/firestore";
+import { analyticsData, linkData } from "../../network/firebase";
+import { addDoc, getDocs } from "firebase/firestore";
+import Cookies from "js-cookie";
+import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
+
+let count = 0;
 
 const ForwardLink = () => {
   const { linkId } = useParams();
@@ -11,12 +15,27 @@ const ForwardLink = () => {
     async function fetchData(){
       const snapshots = await getDocs(linkData(linkId));
       if(snapshots.docs.length>0){
-        const url = snapshots.docs[0].data().url;
-        window.location.replace(url)
+        const shorLink = snapshots.docs[0].data();
+        const isVisited = Cookies.get("visited");
+        const visited = Cookies.get("history");
+        if(count===0 && !isVisited && shorLink.createdBy && shorLink.short && visited==shorLink.short){
+          count++;
+          Cookies.set("visited", true);
+          Cookies.set("history", shorLink.short);
+          const location = await fetchDeviceLocation();
+          const data = {
+            dateTime: Date.now(),
+            device: getDeviceType(),
+            location: location
+          }
+          await addDoc( analyticsData(shorLink.createdBy, shorLink.short), data);
+        }
+        window.location.replace(shorLink.url)
       }
     }
     fetchData();
   },[linkId])
+
 
   return (
     <Box

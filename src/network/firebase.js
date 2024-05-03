@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, collection, where, } from "firebase/firestore";
+import { getFirestore, query, collection, where, doc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBR-zBIhrphneD1LyIOj3t9942Kb7zoH1g",
@@ -16,3 +16,8 @@ const db = getFirestore(app);
 
 export const linkData = (short) => query(collection(db, "LINKS"), where("short", "==", short));
 export const bioData = (id) => query(collection(db, "BIOLINKS"), where("bioId", "==", id));
+
+const analyticsCollectionRef = collection(db, "ANALYTICS");
+export const analyticsData = (userId, linkId) => collection(doc(analyticsCollectionRef, userId), linkId);
+
+export const biolinkAnalytics = (userId) => doc(analyticsCollectionRef, userId);
