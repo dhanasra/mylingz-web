@@ -1,9 +1,8 @@
-import { Avatar, Box, Button, Grid, InputLabel, OutlinedInput, Stack, TextField, Typography, useMediaQuery } from "@mui/material";
+import { Avatar, Box, Button, Grid, InputLabel, OutlinedInput, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { bioData } from "../../network/firebase";
 import { getDocs } from "firebase/firestore";
-import MainCard from "../../components/MainCard";
 import AnimateButton from "../../components/AnimateButton";
 import { useTheme } from "@emotion/react";
 

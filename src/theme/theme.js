@@ -1,4 +1,4 @@
-import { orange, purple } from "@ant-design/colors";
+import { purple } from "@ant-design/colors";
 
 const Theme = (colors) => {
     const { blue, red, gold, cyan, green, grey } = colors;
