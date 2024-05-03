@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Grid, InputLabel, OutlinedInput, Stack, Typography
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { analyticsData, bioData } from "../../network/firebase";
-import { getDocs } from "firebase/firestore";
+import { addDoc, getDocs } from "firebase/firestore";
 import AnimateButton from "../../components/AnimateButton";
 import { useTheme } from "@emotion/react";
 import Cookies from "js-cookie";
