@@ -18,7 +18,7 @@ const ForwardLink = () => {
         const shorLink = snapshots.docs[0].data();
         const isVisited = Cookies.get("visited");
         const visited = Cookies.get("history");
-        if(count===0 && !isVisited && shorLink.createdBy && shorLink.short && visited==shorLink.short){
+        if(count===0 && !isVisited && shorLink.createdBy && shorLink.short && visited===shorLink.short){
           count++;
           Cookies.set("visited", true);
           Cookies.set("history", shorLink.short);

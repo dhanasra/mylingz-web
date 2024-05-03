@@ -28,7 +28,7 @@ const BioLink =()=>{
         setData(newData);
         const isVisited = Cookies.get("visited");
         const visited = Cookies.get("history");
-        if(count===0 && !isVisited && newData.id && newData.bioId && visited==newData.bioId){
+        if(count===0 && !isVisited && newData.id && newData.bioId && visited===newData.bioId){
           count++;
           Cookies.set("visited", true);
           Cookies.set("history", newData.bioId);
