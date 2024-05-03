@@ -5,6 +5,7 @@ import PrivacyPolicy from '../pages/legal/PrivacyPolicy';
 import TermsOfService from '../pages/legal/TermsOfService';
 import AboutUs from '../pages/info/AboutUs';
 import ForwardLink from "../pages/links/ForwardLink";
+import BioLink from "../pages/biolink/BioLink";
 
 const CommonRoutes = {
     path: '/',
@@ -25,6 +26,10 @@ const CommonRoutes = {
       {
         path: ':linkId',
         element: <ForwardLink />
+      },
+      {
+        path: 'm/:bioId',
+        element: <BioLink />
       }
     ]
   };

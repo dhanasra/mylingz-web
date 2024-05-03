@@ -15,3 +15,4 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export const linkData = (short) => query(collection(db, "LINKS"), where("short", "==", short));
+export const bioData = (id) => query(collection(db, "BIOLINKS"), where("bioId", "==", id));
