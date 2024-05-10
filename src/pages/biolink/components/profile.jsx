@@ -13,12 +13,12 @@ const Profile =({data})=>{
   let imageCorner = `${profileDesign?.corner*2}px`;
 
   const layout = profileDesign?.layout;
-  const stackAlignment = layout == "layout3" 
-    ? "end" : layout == "layout2" ? "start" : "center"; 
+  const stackAlignment = layout === "layout3" 
+    ? "end" : layout === "layout2" ? "start" : "center"; 
 
-  if(device=="mobile"){
+  if(device==="mobile"){
     imageSize = `${imageSize}px` ?? "90px"
-  }else if(device=="tab"){
+  }else if(device==="tab"){
     imageSize = `${(1.5*imageSize)}px` ?? "120px"
   }else{
     imageSize = `${(1.8*imageSize)}px` ?? "120px"
@@ -27,7 +27,7 @@ const Profile =({data})=>{
 
   return (
     <Stack
-      direction={ layout=="layout4" ? "row": "column"}
+      direction={ layout==="layout4" ? "row": "column"}
       alignItems={stackAlignment}
     >
       <Avatar sx={{width: imageSize, height: imageSize, borderRadius: imageCorner}} src={data?.picture}/>

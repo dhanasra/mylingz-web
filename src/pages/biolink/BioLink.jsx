@@ -3,13 +3,12 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { analyticsData, bioData } from "../../network/firebase";
 import { addDoc, getDocs } from "firebase/firestore";
-import AnimateButton from "../../components/AnimateButton";
 import { useTheme } from "@emotion/react";
 import Cookies from "js-cookie";
 import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
 import { gradients } from "../../theme/colors";
-import Profile from "./components/profile";
-import Buttons from "./components/buttons";
+import Profile from "./components/Profile";
+import Buttons from "./components/Buttons";
 
 
 let count = 0;

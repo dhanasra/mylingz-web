@@ -31,15 +31,14 @@ export const lightenColor = (hex, percent) => {
     }
     let num = parseInt(hex.slice(1), 16);
     let amt = Math.round(2.55 * percent);
-    let R = (num >> 16) + amt;
-    let G = (num >> 8 & 0x00FF) + amt;
+    let R = ((num >> 16) + amt) & 0xFF; // Enclose the expression in parentheses
+    let G = ((num >> 8) & 0x00FF) + amt; // Enclose the expression in parentheses
     let B = (num & 0x0000FF) + amt;
 
     console.log(`#${(1 << 24 | R << 16 | G << 8 | B).toString(16).slice(1)}`)
 
     return `#${(1 << 24 | R << 16 | G << 8 | B).toString(16).slice(1)}`;
-  };
-
+};
 
 export const gradients = {
     "0": "linear-gradient(to bottom right, #bdc3c7, #2c3e50)",

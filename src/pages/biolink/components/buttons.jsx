@@ -1,13 +1,10 @@
-import { Avatar, Box, Button, Container, Stack, Typography } from "@mui/material"
+import { Box, Stack, Typography } from "@mui/material"
 import { colorToHex } from "../../../theme/colors";
-import { useScreenType } from "../../../utils/utils";
 
 const Buttons =({data})=>{
-  const device = useScreenType();
+  // const device = useScreenType();
 
   const design = data?.design;
-
-  const style = design?.style;
 
   const textColor = colorToHex(design?.wrapper?.color) ?? colorToHex(design?.color);
   const outlineColor = colorToHex(design?.wrapper?.borderColor) ??  colorToHex(design?.color);
