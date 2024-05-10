@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Grid, InputLabel, OutlinedInput, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { analyticsData, bioData } from "../../network/firebase";
@@ -9,6 +9,8 @@ import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
 import { gradients } from "../../theme/colors";
 import ProfileInfo from "./components/ProfileInfo";
 import ButtonsInfo from "./components/ButtonsInfo";
+import ContactForm from "./components/ContactForm";
+import IconLinks from "./components/IconLinks";
 
 
 let count = 0;
@@ -17,8 +19,6 @@ const BioLink =()=>{
 
   const { bioId } = useParams();
   const [data, setData] = useState(null);
-
-  const theme = useTheme();
 
   const isMobileScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const isTabScreen = useMediaQuery((theme) => theme.breakpoints.up('md'));
@@ -65,64 +65,10 @@ const BioLink =()=>{
         spacing={3}
       >
         <ProfileInfo data={data}/>
-        <Stack
-          direction={"column"}
-          spacing={2}
-        >
-          <Grid container justifyContent={"center"}>
-            {
-              data?.icons?.map((e)=>{
-                return (
-                  <Grid item sx={{p: 1}}>
-                    <Avatar src={e?.icon} sx={{width: "60px", height: "60px"}}/>
-                  </Grid>
-                )
-              })
-            }
-          </Grid>
-        </Stack>
+        <IconLinks data={data}/>
         <ButtonsInfo data={data}/>
         <Box sx={{height: "12px"}}/>
-        <Box
-          sx={{
-            border: "1px solid",
-            borderColor: theme.palette.grey.A800,
-            p: 3,
-            borderRadius: "20px"
-          }}
-        >
-          <Stack alignItems={"center"} spacing={1}>
-            <Typography variant="h4">Contact Us</Typography>
-            <Box sx={{height: "10px"}}/>
-            <Stack
-              direction={"column"}
-              spacing={2}
-              sx={{width: "100%"}}
-            >
-              {
-                data?.contactFields?.map((e)=>{
-                  return (
-                    <Stack spacing={1} >
-                        <InputLabel htmlFor="fname">{e.label}</InputLabel>
-                        <OutlinedInput
-                          id="firstName"
-                          type="text"
-                          name="fname"
-                          placeholder={`Enter ${e.label}`}
-                          onChange={()=>{}}
-                          fullWidth
-                        />
-                    </Stack>
-                  )
-                })
-              }
-              <Box sx={{height: "20px"}}/>
-              <Button onClick={()=>{}}  variant="contained" sx={{width: "100%"}}>
-                  <Typography variant="body1" fontSize={16} >Submit</Typography>
-              </Button>
-            </Stack>
-          </Stack>
-        </Box>
+        <ContactForm data={data}/>
         <Box sx={{display: "flex", justifyContent: "center"}}>
           <Typography >Made With MYLingz</Typography>
         </Box>
