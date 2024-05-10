@@ -55,7 +55,7 @@ const BioLink =()=>{
       <Stack
         direction={"column"}
         sx={{
-          borderRadius: "16px 16px 0 0",
+          borderRadius: isMobileScreen ? "0": "16px 16px 0 0",
           maxWidth: "500px",
           minWidth: isMobileScreen ? "100%": isTabScreen ? "600px": "400px",
           background: pageBackground,
