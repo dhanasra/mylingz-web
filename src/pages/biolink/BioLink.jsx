@@ -7,8 +7,8 @@ import { useTheme } from "@emotion/react";
 import Cookies from "js-cookie";
 import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
 import { gradients } from "../../theme/colors";
-import Profile from "./components/Profile";
-import Buttons from "./components/Buttons";
+import ProfileBlock from "./components/Profile";
+import ButtonsBlock from "./components/Buttons";
 
 
 let count = 0;
@@ -64,7 +64,7 @@ const BioLink =()=>{
         }}
         spacing={3}
       >
-        <Profile data={data}/>
+        <ProfileBlock data={data}/>
         <Stack
           direction={"column"}
           spacing={2}
@@ -81,7 +81,7 @@ const BioLink =()=>{
             }
           </Grid>
         </Stack>
-        <Buttons data={data}/>
+        <ButtonsBlock data={data}/>
         <Box sx={{height: "12px"}}/>
         <Box
           sx={{

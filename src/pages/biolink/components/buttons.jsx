@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { colorToHex } from "../../../theme/colors";
 
-const Buttons =({data})=>{
+const ButtonsBlock =({data})=>{
   // const device = useScreenType();
 
   const design = data?.design;
@@ -53,4 +53,4 @@ const Buttons =({data})=>{
   )
 }
 
-export default Buttons;
+export default ButtonsBlock;
