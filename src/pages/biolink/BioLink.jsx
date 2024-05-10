@@ -7,6 +7,9 @@ import AnimateButton from "../../components/AnimateButton";
 import { useTheme } from "@emotion/react";
 import Cookies from "js-cookie";
 import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
+import { gradients } from "../../theme/colors";
+import Profile from "./components/profile";
+import Buttons from "./components/buttons";
 
 
 let count = 0;
@@ -19,6 +22,9 @@ const BioLink =()=>{
   const theme = useTheme();
 
   const isMobileScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const isTabScreen = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
+  var pageBackground = data?.design?.background !=null ?  gradients[data?.design?.background] : null;
 
   useEffect(()=>{
     async function fetchData(){
@@ -50,25 +56,16 @@ const BioLink =()=>{
       <Stack
         direction={"column"}
         sx={{
-          borderRadius: "4px",
+          borderRadius: "16px 16px 0 0",
           maxWidth: "500px",
-          minWidth: isMobileScreen ? "100%": "380px",
-          background: "white",
-          padding: isMobileScreen ? "16px": "20px",
+          minWidth: isMobileScreen ? "100%": isTabScreen ? "600px": "400px",
+          background: pageBackground,
+          padding: isMobileScreen ? "16px": isTabScreen ? "20px 50px" :  "20px",
           boxShadow: "0px 2px 30px #ccc6"
         }}
         spacing={3}
       >
-        <Stack
-          direction={"column"}
-          alignItems={"center"}
-          
-        >
-          <Avatar sx={{width: "120px", height: "120px"}} src={data?.picture}/>
-          <Box height={"16px"} />
-          <Typography variant="h2">{data?.title}</Typography>
-          <Typography >{data?.slogan}</Typography>
-        </Stack>
+        <Profile data={data}/>
         <Stack
           direction={"column"}
           spacing={2}
@@ -85,23 +82,8 @@ const BioLink =()=>{
             }
           </Grid>
         </Stack>
-        <Stack
-          direction={"column"}
-          spacing={2}
-          width={"100%"}
-        >
-          {
-            data?.buttons?.map((e)=>{
-              return (
-                <AnimateButton>
-                  <Button onClick={()=>{}}  variant="contained" sx={{width: "100%", borderRadius: "100px", p: 1.5, background: "lightgray"}}>
-                    <Typography variant="body1" fontSize={16} color={"black"}>{e.text}</Typography>
-                  </Button>
-                </AnimateButton>
-              )
-            })
-          }
-        </Stack>
+        <Buttons data={data}/>
+        <Box sx={{height: "12px"}}/>
         <Box
           sx={{
             border: "1px solid",

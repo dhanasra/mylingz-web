@@ -1,3 +1,4 @@
+import { useTheme } from "@emotion/react";
 
 export const getDeviceType = () => {
   const userAgent = navigator.userAgent;
@@ -39,3 +40,18 @@ export const fetchDeviceLocation = async () => {
     return null;
   }
 };
+
+export function useScreenType() {
+  const theme = useTheme();
+  const screenWidth = window.innerWidth;
+  const isTablet = screenWidth >= theme.breakpoints.values.sm && screenWidth < theme.breakpoints.values.md;
+  const isWeb = screenWidth >= theme.breakpoints.values.md;
+
+  if (isWeb) {
+    return 'web';
+  } else if (isTablet) {
+    return 'tab';
+  } else {
+    return 'mobile';
+  }
+}
