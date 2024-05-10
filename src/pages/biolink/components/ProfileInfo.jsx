@@ -2,7 +2,7 @@ import { Avatar, Box, Stack, Typography } from "@mui/material"
 import { colorToHex } from "../../../theme/colors";
 import { useScreenType } from "../../../utils/utils";
 
-const ProfileBlock =({data})=>{
+const ProfileInfo =({data})=>{
   const device = useScreenType();
 
   const profileDesign = data?.design?.profileDesign;
@@ -40,4 +40,4 @@ const ProfileBlock =({data})=>{
   )
 }
 
-export default ProfileBlock;
+export default ProfileInfo;
