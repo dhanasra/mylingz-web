@@ -28,9 +28,10 @@ const ButtonsInfo =({data})=>{
       width={"100%"}
     >
       {
-        data?.buttons?.map((e)=>{
+        data?.buttons?.map((e, idx)=>{
           return (
             <Box
+              key={`${idx}`}
               onClick={()=>window.open(e.url, '_blank', 'noopener')}
               sx={{
                 textAlign: "center",

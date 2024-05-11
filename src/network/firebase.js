@@ -21,3 +21,6 @@ const analyticsCollectionRef = collection(db, "ANALYTICS");
 export const analyticsData = (userId, linkId) => collection(doc(analyticsCollectionRef, userId), linkId);
 
 export const biolinkAnalytics = (userId) => doc(analyticsCollectionRef, userId);
+
+const biolinksCollectionRef = collection(db, "BIOLINKS");
+export const messagesData = (userId) => collection(doc(biolinksCollectionRef, userId), "MESSAGES");

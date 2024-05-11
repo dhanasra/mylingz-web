@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { analyticsData, bioData } from "../../network/firebase";
 import { addDoc, getDocs } from "firebase/firestore";
-import { useTheme } from "@emotion/react";
 import Cookies from "js-cookie";
 import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
 import { gradients } from "../../theme/colors";
@@ -19,18 +18,23 @@ const BioLink =()=>{
 
   const { bioId } = useParams();
   const [data, setData] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   const isMobileScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const isTabScreen = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   var pageBackground = data?.design?.background !=null ?  gradients[data?.design?.background] : null;
 
+
+
   useEffect(()=>{
     async function fetchData(){
       const snapshots = await getDocs(bioData(bioId));
+
       if(snapshots.docs.length>0){
         const newData = snapshots.docs[0].data();
         setData(newData);
+        setUserId(snapshots.docs[0].id)
         const isVisited = Cookies.get("visited");
         const visited = Cookies.get("history");
         if(count===0 && !isVisited && newData.id && newData.bioId && visited===newData.bioId){
@@ -68,7 +72,7 @@ const BioLink =()=>{
         <IconLinks data={data}/>
         <ButtonsInfo data={data}/>
         <Box sx={{height: "12px"}}/>
-        <ContactForm data={data}/>
+        <ContactForm userId={userId} data={data}/>
         <Box sx={{display: "flex", justifyContent: "center"}}>
           <Typography >Made With MYLingz</Typography>
         </Box>
