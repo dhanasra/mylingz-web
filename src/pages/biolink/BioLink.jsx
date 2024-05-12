@@ -37,7 +37,12 @@ const BioLink =()=>{
         setUserId(snapshots.docs[0].id)
         const isVisited = Cookies.get("visited");
         const visited = Cookies.get("history");
-        if(count===0 && !isVisited && newData.id && newData.bioId && visited===newData.bioId){
+
+        console.log(!isVisited);
+        console.log(visited);
+        console.log(count);
+
+        if(count===0 && !isVisited && newData.id && newData.bioId && visited!==newData.bioId){
           count++;
           Cookies.set("visited", true);
           Cookies.set("history", newData.bioId);
@@ -47,7 +52,8 @@ const BioLink =()=>{
             device: getDeviceType(),
             location: location
           }
-          await addDoc( analyticsData(newData.id, `m/${newData.bioId}`), data);
+          const ref = await addDoc( analyticsData(newData.id, `m-${newData.bioId}`), data);
+          console.log(ref)
         }
       }
     }
