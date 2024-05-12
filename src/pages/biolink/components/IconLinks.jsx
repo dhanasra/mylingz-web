@@ -1,6 +1,6 @@
-import { Avatar, Box, Grid, Stack } from "@mui/material"
+import { Box, Grid, Stack } from "@mui/material"
 import { getIconUrl } from "../../../utils/utils";
-import { colorToHex, hexToCSSFilter } from "../../../theme/colors";
+import { colorToHex } from "../../../theme/colors";
 
 const IconLinks =({data})=>{
 
@@ -15,7 +15,7 @@ const IconLinks =({data})=>{
     window.open(link, '_blank', 'noopener');
   } 
 
-  const iconColor = (iconType!=="colored" && iconType!="gradient") ? colorToHex(design.color) : null;
+  const iconColor = (iconType!=="colored" && iconType!=="gradient") ? colorToHex(design.color) : null;
 
 
   return (
