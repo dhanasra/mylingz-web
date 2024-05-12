@@ -3,7 +3,8 @@ import { getIconUrl } from "../../../utils/utils";
 
 const IconLinks =({data})=>{
 
-  // const design = data?.design;
+  const design = data?.design;
+  const iconType = design?.thumbnail?.style ?? "colored";
 
   const navigate=(value)=>{
     let link = value;
@@ -22,7 +23,7 @@ const IconLinks =({data})=>{
       <Grid container justifyContent={"center"}>
         {
           data?.icons?.map((e)=>{
-            const iconUrl = getIconUrl({type: "colored", icon: e.name.toLowerCase()});
+            const iconUrl = getIconUrl({type: iconType, icon: e.name.toLowerCase()});
 
             return (
               <Grid item sx={{p: 1, cursor: "pointer"}}>
