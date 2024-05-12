@@ -29,7 +29,11 @@ const ForwardLink = () => {
           }
           await addDoc( analyticsData(shorLink.createdBy, shorLink.short), data);
         }
-        window.location.replace(shorLink.url)
+        let link = shorLink.url;
+        if (!link.includes("https")) {
+            link = "https://" + link;
+        }
+        window.location.replace(link);
       }
     }
     fetchData();
