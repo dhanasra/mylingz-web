@@ -55,3 +55,8 @@ export function useScreenType() {
     return 'mobile';
   }
 }
+
+export function  getIconUrl({type, icon}){
+  const storageDomain = "https://firebasestorage.googleapis.com/v0/b/mylingz.appspot.com/o";
+  return `${storageDomain}/icons%2F${type}%2F${icon}.png?alt=media`;
+}

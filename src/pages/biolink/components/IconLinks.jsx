@@ -1,22 +1,17 @@
-import { Avatar, Box, Button, Grid, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material"
-import { colorToHex } from "../../../theme/colors";
+import { Avatar, Grid, Stack } from "@mui/material"
+import { getIconUrl } from "../../../utils/utils";
 
 const IconLinks =({data})=>{
-  // const device = useScreenType();
 
   const design = data?.design;
 
-  const textColor = colorToHex(design?.wrapper?.color) ?? colorToHex(design?.color);
-  const outlineColor = colorToHex(design?.wrapper?.borderColor) ??  colorToHex(design?.color);
-  const borderRadius = `${design?.cornerRadius/4}px`;
-
-  // if(device=="mobile"){
-  //   imageSize = `${imageSize}px` ?? "90px"
-  // }else if(device=="tab"){
-  //   imageSize = `${(1.5*imageSize)}px` ?? "120px"
-  // }else{
-  //   imageSize = `${(1.8*imageSize)}px` ?? "120px"
-  // }
+  const navigate=(value)=>{
+    let link = value;
+    if (!link.includes("https")) {
+        link = "https://" + link;
+    }
+    window.open(link, '_blank', 'noopener');
+  } 
 
 
   return (
@@ -27,9 +22,11 @@ const IconLinks =({data})=>{
       <Grid container justifyContent={"center"}>
         {
           data?.icons?.map((e)=>{
+            const iconUrl = getIconUrl({type: "colored", icon: e.name.toLowerCase()});
+
             return (
-              <Grid item sx={{p: 1}}>
-                <Avatar src={e?.icon} sx={{width: "60px", height: "60px"}}/>
+              <Grid item sx={{p: 1, cursor: "pointer"}}>
+                <Avatar onClick={()=>navigate(e.data.value)} src={iconUrl} sx={{width: "60px", height: "60px"}}/>
               </Grid>
             )
           })
