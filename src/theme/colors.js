@@ -62,3 +62,25 @@ export function colorToHex(flutterColor) {
     const hexColor = '#' + hexValue;
     return hexColor;
 }
+
+export function hexToCSSFilter(flutterColor) {
+    // Convert hex color to RGB
+
+    if(flutterColor==null){
+        return null;
+    }
+    const hexValue = flutterColor.substring(10, 16);
+    const hexColor = '#' + hexValue;
+    
+    const r = parseInt(hexColor.substring(1, 3), 16);
+    const g = parseInt(hexColor.substring(3, 5), 16);
+    const b = parseInt(hexColor.substring(5, 7), 16);
+  
+    // Calculate individual filter values
+    const invert = 100 - (0.299 * r + 0.587 * g + 0.114 * b) / 255 * 100;
+  
+    // Construct CSS filter string
+    const filter = `invert(${invert}%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%)`;
+  
+    return filter;
+  }
