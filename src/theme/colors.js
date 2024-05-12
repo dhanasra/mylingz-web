@@ -58,8 +58,7 @@ export function colorToHex(flutterColor) {
     if(flutterColor==null){
         return null;
     }
-    const colorString = flutterColor.replace('Color(', '').replace(')', '');
-    const colorNumber = parseInt(colorString, 16);
-    const hexString = '#' + colorNumber.toString(16).toUpperCase().padStart(6, '0');
-    return hexString;
+    const hexValue = flutterColor.substring(10, 16);
+    const hexColor = '#' + hexValue;
+    return hexColor;
 }

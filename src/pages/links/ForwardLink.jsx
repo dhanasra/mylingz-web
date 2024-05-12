@@ -16,9 +16,8 @@ const ForwardLink = () => {
       const snapshots = await getDocs(linkData(linkId));
       if(snapshots.docs.length>0){
         const shorLink = snapshots.docs[0].data();
-        const isVisited = Cookies.get("visited");
         const visited = Cookies.get("history");
-        if(count===0 && !isVisited && shorLink.createdBy && shorLink.short && visited===shorLink.short){
+        if(shorLink.createdBy && shorLink.short && visited!==shorLink.short){
           count++;
           Cookies.set("visited", true);
           Cookies.set("history", shorLink.short);
@@ -30,7 +29,11 @@ const ForwardLink = () => {
           }
           await addDoc( analyticsData(shorLink.createdBy, shorLink.short), data);
         }
-        window.location.replace(shorLink.url)
+        let link = shorLink.url;
+        if (!link.includes("https")) {
+            link = "https://" + link;
+        }
+        window.location.replace(link);
       }
     }
     fetchData();

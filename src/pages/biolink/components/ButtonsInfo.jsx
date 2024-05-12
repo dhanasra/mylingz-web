@@ -8,17 +8,15 @@ const ButtonsInfo =({data})=>{
 
   const textColor = colorToHex(design?.wrapper?.color) ?? colorToHex(design?.color);
   const outlineColor = colorToHex(design?.wrapper?.borderColor) ??  colorToHex(design?.color);
-  const borderRadius = `${design?.cornerRadius/4}px`;
+  const borderRadius = design?.cornerRadius!=null ? `${design?.cornerRadius/4}px` : "4px";
 
-
-
-  // if(device=="mobile"){
-  //   imageSize = `${imageSize}px` ?? "90px"
-  // }else if(device=="tab"){
-  //   imageSize = `${(1.5*imageSize)}px` ?? "120px"
-  // }else{
-  //   imageSize = `${(1.8*imageSize)}px` ?? "120px"
-  // }
+  const navigate=(value)=>{
+    let link = value;
+    if (!link.includes("https")) {
+        link = "https://" + link;
+    }
+    window.open(link, '_blank', 'noopener');
+  } 
 
 
   return (
@@ -26,26 +24,25 @@ const ButtonsInfo =({data})=>{
       direction={"column"}
       spacing={2}
       width={"100%"}
+      p={3}
     >
       {
-        data?.buttons?.map((e)=>{
+        data?.buttons?.map((e, idx)=>{
           return (
             <Box
-              onClick={()=>window.open(e.url, '_blank', 'noopener')}
+              key={`${idx}`}
+              onClick={()=>navigate(e.url)}
               sx={{
+                cursor: "pointer",
                 textAlign: "center",
                 p: "12px",
-                border: `1px solid ${outlineColor}`,
+                border: `1px solid ${outlineColor ?? "grey"}`,
                 borderRadius: borderRadius
               }}
             >
               <Typography variant="body1" fontSize={16} color={textColor}>
                 {e.text}</Typography>
             </Box>
-
-            // <Button onClick={()=>{}}  variant="contained" sx={{width: "100%", borderRadius: "100px", p: 1.5, background: "lightgray"}}>
-            //   
-            // </Button>
           )
         })
       }

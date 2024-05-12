@@ -17,14 +17,13 @@ const ProfileInfo =({data})=>{
     ? "end" : layout === "layout2" ? "start" : "center"; 
 
   if(device==="mobile"){
-    imageSize = `${imageSize}px` ?? "90px"
+    imageSize = imageSize!=null ? `${imageSize}px` : "90px"
   }else if(device==="tab"){
-    imageSize = `${(1.5*imageSize)}px` ?? "120px"
+    imageSize = imageSize!=null ? `${(1.5*imageSize)}px` : "120px"
   }else{
-    imageSize = `${(1.8*imageSize)}px` ?? "120px"
+    imageSize = imageSize!=null ? `${(1.8*imageSize)}px` : "120px"
   }
-
-
+  
   return (
     <Stack
       direction={ layout==="layout4" ? "row": "column"}
@@ -32,7 +31,7 @@ const ProfileInfo =({data})=>{
     >
       <Avatar sx={{width: imageSize, height: imageSize, borderRadius: imageCorner}} src={data?.picture}/>
       <Box height={"16px"} width={"16px"}/>
-      <Stack>
+      <Stack alignItems={"center"}>
         <Typography variant="h2" sx={{color: titleColor}}>{data?.title}</Typography>
         <Typography sx={{color: sloganColor}} >{data?.slogan}</Typography>
       </Stack>
