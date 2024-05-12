@@ -3,7 +3,7 @@ import { getIconUrl } from "../../../utils/utils";
 
 const IconLinks =({data})=>{
 
-  const design = data?.design;
+  // const design = data?.design;
 
   const navigate=(value)=>{
     let link = value;

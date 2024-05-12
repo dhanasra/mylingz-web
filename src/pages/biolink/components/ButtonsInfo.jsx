@@ -24,7 +24,6 @@ const ButtonsInfo =({data})=>{
       direction={"column"}
       spacing={2}
       width={"100%"}
-      p={3}
     >
       {
         data?.buttons?.map((e, idx)=>{

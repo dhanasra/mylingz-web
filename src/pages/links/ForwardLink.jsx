@@ -6,8 +6,6 @@ import { addDoc, getDocs } from "firebase/firestore";
 import Cookies from "js-cookie";
 import { fetchDeviceLocation, getDeviceType } from "../../utils/utils";
 
-let count = 0;
-
 const ForwardLink = () => {
   const { linkId } = useParams();
 
@@ -18,7 +16,6 @@ const ForwardLink = () => {
         const shorLink = snapshots.docs[0].data();
         const visited = Cookies.get("history");
         if(shorLink.createdBy && shorLink.short && visited!==shorLink.short){
-          count++;
           Cookies.set("visited", true);
           Cookies.set("history", shorLink.short);
           const location = await fetchDeviceLocation();

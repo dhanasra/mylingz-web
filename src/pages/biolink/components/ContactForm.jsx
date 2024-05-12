@@ -2,7 +2,7 @@ import { Box, Button, CircularProgress, FormHelperText, InputLabel, OutlinedInpu
 import { colorToHex } from "../../../theme/colors";
 import { useTheme } from "@emotion/react";
 import { useState } from "react";
-import { addDoc, getDocs } from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
 import { messagesData } from "../../../network/firebase";
 import { fetchDeviceLocation, getDeviceType } from "../../../utils/utils";
 
@@ -14,7 +14,7 @@ const ContactForm =({userId, data})=>{
 
   const textColor = colorToHex(design?.wrapper?.color) ?? colorToHex(design?.color);
   const outlineColor = colorToHex(design?.wrapper?.borderColor) ??  colorToHex(design?.color);
-  const borderRadius = `${design?.cornerRadius/4}px`;
+  const borderRadius = design?.cornerRadius!=null ? `${design?.cornerRadius/4}px` : "4px";
 
   const actionBgColor = colorToHex(design?.actionBtnStyle?.bgColor);
   const actionBorderColor = colorToHex(design?.actionBtnStyle?.borderColor) ?? outlineColor;
@@ -77,14 +77,13 @@ const ContactForm =({userId, data})=>{
     <Box
       sx={{
         p: 3,
-        border: "1px solid",
         borderColor: theme.palette.grey.A800,
-        border: `1px solid ${outlineColor}`,
+        border: `1px solid ${outlineColor ?? "grey"}`,
         borderRadius: borderRadius
       }}
     >
       {
-        (formState=="loading")
+        (formState==="loading")
          ? (
             <center style={{padding: "60px"}}>
               <CircularProgress
@@ -92,7 +91,7 @@ const ContactForm =({userId, data})=>{
               />
             </center>
           )
-         : (formState=="submitted")
+         : (formState==="submitted")
          ? (
             <center style={{padding: "60px"}}>
               <Typography variant="body1" fontSize={16} sx={{color: textColor}} >Thank You For Submitting !</Typography>
