@@ -28,6 +28,10 @@ const DiscoverPage =()=>{
     fetchData();
   }, []);
 
+  const openLink=(url)=>{
+    window.open(url, '_blank', 'noopener')
+  }
+
 
   return (
     <Box sx={{background: "#fff"}}>
@@ -35,7 +39,7 @@ const DiscoverPage =()=>{
         {
           data.map((d, idx)=>{
             return (
-              <Grid item key={`${idx}`} lg={3} md={4} sm={6} xs={12}>
+              <Grid item key={`${idx}`} lg={3} md={4} sm={6} xs={12} onClick={()=>openLink(`${d?.domainName}/${d?.bioId}`)}>
                 <Stack direction={"column"}>
                   <Stack
                     direction={"column"}
