@@ -1,13 +1,11 @@
 import { Box, Button, IconButton, Stack, Typography, useMediaQuery } from "@mui/material";
 import LogoImg from '../../../assets/logo.png'
-import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { MenuOutlined } from "@ant-design/icons";
 import { PLAYSTORE_URL } from "../../../utils/constants";
 
 const Header = ({handleClick, handleDrawer})=>{
 
-  const navigate = useNavigate();
   const theme = useTheme();
 
   const isMdScreen = useMediaQuery('(min-width:960px)');

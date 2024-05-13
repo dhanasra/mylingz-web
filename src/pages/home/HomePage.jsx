@@ -12,7 +12,7 @@ const HomePage = ()=>{
   };
 
   const handleScrollToSection = (section) => {
-    if(section=="discover"){
+    if(section==="discover"){
       navigate('/discover');
     }else if (sectionRefs[section].current) {
       sectionRefs[section].current.scrollIntoView({ behavior: 'smooth', block: 'start' });

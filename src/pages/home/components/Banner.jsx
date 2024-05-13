@@ -1,16 +1,14 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Box, Button, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import AppImg from "../../../assets/app-3d.png";
 import { PLAYSTORE_URL } from "../../../utils/constants";
 
 const Banner = ()=>{
 
-  const navigate = useNavigate();
   const theme = useTheme();
 
-  const isMdScreen = useMediaQuery('(min-width:960px)');
+  // const isMdScreen = useMediaQuery('(min-width:960px)');
   const isMobileScreen = useMediaQuery('(min-width:600px)');
 
   const openPlayStore=()=>{
