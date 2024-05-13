@@ -1,15 +1,18 @@
 import { Box } from "@mui/material";
 import Header from "./components/Header";
 import Banner from "./components/Banner";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Features from "./components/Features";
 import Testimonials from "./components/Testimonials";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
 import Contact from "./components/Contact";
+import HomeDrawer from "./components/HomeDrawer";
 
 const HomePage = ()=>{
+
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   const sectionRefs = {
@@ -30,8 +33,17 @@ const HomePage = ()=>{
 
   return (
     <Box>
+      <HomeDrawer
+        open={open} 
+        onClose={()=>setOpen(false)}
+        handleClick={(v)=>{
+          setOpen(false);
+          handleScrollToSection(v)
+        }}
+      />
       <Header
         handleClick={(s)=>handleScrollToSection(s)}
+        handleDrawer={()=>setOpen(true)}
       />
       <Box sx={{display: "flex", flexDirection: "column"}}>
         <div ref={sectionRefs.home}>

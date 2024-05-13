@@ -39,7 +39,7 @@ const Banner = ()=>{
                   fontSize: "44px",
                 }
               }}  
-            >{`Elevate Networking With Ai-Powered Business Cards`}</Typography>
+            >{`Engage, connect, track with Mylingz's versatile tools.`}</Typography>
           </Grid> 
 
           <Grid item xs={12}>
@@ -61,7 +61,7 @@ const Banner = ()=>{
                   fontSize: "18px",
                 }
               }}  
-            >{`Easily create digital business cards for yourself or your team. Use them to make connections that grow your business.`}</Typography>
+            >{`Leverage our URL trimmer and Hub pages to captivate your audience and link them to pertinent info. Craft, adjust, and monitor all within the Mylingz Networking Suite.`}</Typography>
           </Grid> 
 
           <Grid item xs={12}>
