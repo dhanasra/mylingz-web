@@ -1,11 +1,12 @@
 import { getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { bioDataDiscover, userData } from "../../network/firebase";
+import { analyticsData, bioDataDiscover, userData } from "../../network/firebase";
 import ContactForm from "../biolink/components/ContactForm";
 import ButtonsInfo from "../biolink/components/ButtonsInfo";
 import IconLinks from "../biolink/components/IconLinks";
 import ProfileInfo from "../biolink/components/ProfileInfo";
 import { gradients } from "../../theme/colors";
+import { FaEye } from "react-icons/fa6";
 
 const { Box, Grid, Stack, Typography } = require("@mui/material")
 
@@ -20,7 +21,11 @@ const DiscoverPage =()=>{
         const data = e.data();
         const userSnap = await getDocs(userData(data.id));
         const user = userSnap.docs[0].data();
-        return { ...data, user: user };
+
+        const analyticsSnap = await getDocs(analyticsData(data.id, `m-${data.bioId}`));
+        const count = analyticsSnap.docs.length;
+
+        return { ...data, user: user, views: count };
       });
       const profiles = await Promise.all(profilesPromises);
       setData(profiles);
@@ -36,6 +41,12 @@ const DiscoverPage =()=>{
   return (
     <Box sx={{background: "#fff"}}>
       <Grid container spacing={3} padding={4}>
+        <Grid item xs={12} sx={{mb: 3}}>
+          <Stack alignItems={"center"} sx={{mb: "32px", textAlign: "center"}} spacing={1}>
+            <Typography variant="h2">Discover Profiles</Typography>
+            <Typography>Explore profiles, enquire, expand your digital connections!</Typography>
+          </Stack>
+        </Grid>
         {
           data.map((d, idx)=>{
             return (
@@ -62,8 +73,16 @@ const DiscoverPage =()=>{
                     <ContactForm userId={'userId'} data={d}/>
                   </Stack>
                   <Box sx={{height: "8px"}}/>
-                  <Typography variant="h4" fontSize={16}>{`${d?.user?.firstName} ${d?.user?.lastName}`}</Typography>
-                  <Typography fontSize={12}>{`${d?.domainName}/${d?.bioId}`}</Typography>
+                  <Stack direction={"row"} justifyContent={"space-between"} sx={{pr: "8px"}}>
+                    <Stack>
+                      <Typography variant="h4" fontSize={16}>{`${d?.user?.firstName} ${d?.user?.lastName}`}</Typography>
+                      <Typography fontSize={12}>{`${d?.slogan ?? '-'}`}</Typography>
+                    </Stack>
+                    <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                      <Typography fontSize={14}>{`${d?.views ?? ''}`}</Typography>
+                      <FaEye style={{fontSize: "16px"}}/>
+                    </Stack>
+                  </Stack>
                 </Stack>
               </Grid>
             )

@@ -7,6 +7,7 @@ import Features from "./components/Features";
 import Testimonials from "./components/Testimonials";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
+import Contact from "./components/Contact";
 
 const HomePage = ()=>{
 
@@ -16,6 +17,7 @@ const HomePage = ()=>{
     features: useRef(null),
     testimonials: useRef(null),
     faq: useRef(null),
+    contact: useRef(null)
   };
 
   const handleScrollToSection = (section) => {
@@ -43,6 +45,9 @@ const HomePage = ()=>{
         </div>
         <div ref={sectionRefs.faq}>
           <Faq />
+        </div>
+        <div ref={sectionRefs.contact} >
+          <Contact/>
         </div>
         <Box
             sx={{
