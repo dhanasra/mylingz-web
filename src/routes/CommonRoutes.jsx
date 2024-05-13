@@ -6,11 +6,16 @@ import TermsOfService from '../pages/legal/TermsOfService';
 import AboutUs from '../pages/info/AboutUs';
 import ForwardLink from "../pages/links/ForwardLink";
 import BioLink from "../pages/biolink/BioLink";
+import HomePage from "../pages/home/HomePage";
 
 const CommonRoutes = {
     path: '/',
     element: <MinimalLayout />,
     children: [
+      {
+        path: '',
+        element: <HomePage />
+      },
       {
         path: 'legal/privacy',
         element: <PrivacyPolicy />
