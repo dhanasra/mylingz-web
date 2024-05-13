@@ -12,10 +12,10 @@ const TermsOfService = () => {
     }}>
       <Typography variant="h2" textAlign={"center"}>Terms of Service</Typography>
       <Box height={54}/>
-      <Typography>QRLingz Terms of Service</Typography>
+      <Typography>MYLingz Terms of Service</Typography>
       <Typography>Last updated: April 25, 2024</Typography>
       <Box height={24}/>
-      <Typography>Welcome to QRLingz! These Terms of Service ("Terms") govern your use of the QRLingz website and mobile applications (collectively, the "Service"). By using the Service, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, please do not use the Service.</Typography>
+      <Typography>Welcome to MYLingz! These Terms of Service ("Terms") govern your use of the MYLingz website and mobile applications (collectively, the "Service"). By using the Service, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, please do not use the Service.</Typography>
       <Box height={24}/>
       <Typography variant="h5">## 1. Acceptance of Terms</Typography>
       <Box height={8}/>
@@ -23,7 +23,7 @@ const TermsOfService = () => {
       <Box height={16}/>
       <Typography variant="h5">## 2. Changes to Terms</Typography>
       <Box height={8}/>
-      <Typography>QRLingz reserves the right to modify or revise these Terms at any time. Any changes will be effective immediately upon posting the updated Terms. Your continued use of the Service after the posting of changes constitutes your acceptance of such changes.</Typography>
+      <Typography>MYLingz reserves the right to modify or revise these Terms at any time. Any changes will be effective immediately upon posting the updated Terms. Your continued use of the Service after the posting of changes constitutes your acceptance of such changes.</Typography>
       <Box height={16}/>
       <Typography variant="h5">## 3. Use of the Service</Typography>
       <Box height={8}/>
@@ -31,7 +31,7 @@ const TermsOfService = () => {
       <Box height={16}/>
       <Typography variant="h5">## 4. User Content</Typography>
       <Box height={8}/>
-      <Typography>You retain ownership of any content you submit to the Service ("User Content"). By submitting User Content, you grant QRLingz a worldwide, non-exclusive, royalty-free, sublicensable, and transferable license to use, reproduce, distribute, prepare derivative works of, display, and perform the User Content in connection with the Service.</Typography>
+      <Typography>You retain ownership of any content you submit to the Service ("User Content"). By submitting User Content, you grant MYLingz a worldwide, non-exclusive, royalty-free, sublicensable, and transferable license to use, reproduce, distribute, prepare derivative works of, display, and perform the User Content in connection with the Service.</Typography>
       <Box height={16}/>
       <Typography variant="h5">## 5. Prohibited Conduct</Typography>
       <Box height={8}/>
@@ -43,15 +43,15 @@ const TermsOfService = () => {
       <Box height={16}/>
       <Typography variant="h5">## 6. Termination</Typography>
       <Box height={8}/>
-      <Typography>QRLingz reserves the right to suspend or terminate your access to the Service at any time for any reason without notice.</Typography>
+      <Typography>MYLingz reserves the right to suspend or terminate your access to the Service at any time for any reason without notice.</Typography>
       <Box height={16}/>
       <Typography variant="h5">## 7. Disclaimers</Typography>
       <Box height={8}/>
-      <Typography>The Service is provided "as is" and "as available" without any warranties, express or implied. QRLingz does not warrant that the Service will be error-free or uninterrupted.</Typography>
+      <Typography>The Service is provided "as is" and "as available" without any warranties, express or implied. MYLingz does not warrant that the Service will be error-free or uninterrupted.</Typography>
       <Box height={16}/>
       <Typography variant="h5">## 8. Limitation of Liability</Typography>
       <Box height={8}/>
-      <Typography>QRLingz and its affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly.</Typography>
+      <Typography>MYLingz and its affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly.</Typography>
       <Box height={16}/>
       <Typography variant="h5">## 9. Governing Law</Typography>
       <Box height={8}/>
@@ -63,7 +63,7 @@ const TermsOfService = () => {
 
       <Typography>---</Typography>
 
-      <Typography>We appreciate your use of QRLingz and hope you have a great experience!</Typography>
+      <Typography>We appreciate your use of MYLingz and hope you have a great experience!</Typography>
 
     </Box>
   )

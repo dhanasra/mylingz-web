@@ -12,14 +12,14 @@ const PrivacyPolicy = () => {
     }}>
       <Typography variant="h2" textAlign={"center"}>Privacy Policy</Typography>
       <Box height={54}/>
-      <Typography>QRLingz Privacy Policy</Typography>
+      <Typography>MYLingz Privacy Policy</Typography>
       <Typography>Last updated: April 25, 2024</Typography>
       <Box height={24}/>
-      <Typography>At QRLingz, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and protect your information when you use our QR code generation services through our website and mobile applications (collectively, the “Service”). Please read this policy carefully to understand our practices regarding your information and your choices regarding its use.</Typography>
+      <Typography>At MYLingz, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and protect your information when you use our QR code generation services through our website and mobile applications (collectively, the “Service”). Please read this policy carefully to understand our practices regarding your information and your choices regarding its use.</Typography>
       <Box height={24}/>
-      <Typography variant="h4">The QRLingz Service</Typography>
+      <Typography variant="h4">The MYLingz Service</Typography>
       <Box height={8}/>
-      <Typography>QRLingz provides tools to generate QR codes for various purposes, such as website URLs, contact information, Wi-Fi networks, and more. Our Service is designed to facilitate the creation and management of QR codes for personal and professional use.</Typography>
+      <Typography>MYLingz provides tools to generate QR codes for various purposes, such as website URLs, contact information, Wi-Fi networks, and more. Our Service is designed to facilitate the creation and management of QR codes for personal and professional use.</Typography>
       <Box height={24}/>
       <Typography variant="h4">Information We Collect</Typography>
       <Box height={8}/>
@@ -48,7 +48,7 @@ const PrivacyPolicy = () => {
       <Typography variant="h4">Contact Us</Typography>
       <Box height={8}/>
       <Typography>If you have any questions, comments, or concerns about our Privacy Policy or practices, please contact us at <a href="mailto:dhana.spiderlingz@gmail.com" style={{ color: 'blue', textDecoration: 'underline' }}>dhana.spiderlingz@gmail.com</a>.</Typography>
-      <Typography>We appreciate your trust in QRLingz and are committed to protecting your privacy.</Typography>
+      <Typography>We appreciate your trust in MYLingz and are committed to protecting your privacy.</Typography>
 
     </Box>
   )
