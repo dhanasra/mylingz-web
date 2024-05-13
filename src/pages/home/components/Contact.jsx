@@ -1,4 +1,4 @@
-import { Box, Button, FormLabel, Grid, InputLabel, OutlinedInput, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Button, Grid, InputLabel, OutlinedInput, Stack, Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
 
 function Contact() {
