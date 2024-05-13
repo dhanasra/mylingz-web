@@ -3,12 +3,19 @@ import Header from "./components/Header";
 import Banner from "./components/Banner";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Features from "./components/Features";
+import Testimonials from "./components/Testimonials";
+import Faq from "./components/Faq";
+import Footer from "./components/Footer";
 
 const HomePage = ()=>{
 
   const navigate = useNavigate();
   const sectionRefs = {
-    home: useRef(null)
+    home: useRef(null),
+    features: useRef(null),
+    testimonials: useRef(null),
+    faq: useRef(null),
   };
 
   const handleScrollToSection = (section) => {
@@ -28,6 +35,24 @@ const HomePage = ()=>{
         <div ref={sectionRefs.home}>
           <Banner />
         </div>
+        <div ref={sectionRefs.features}>
+          <Features />
+        </div>
+        <div ref={sectionRefs.testimonials}>
+          <Testimonials />
+        </div>
+        <div ref={sectionRefs.faq}>
+          <Faq />
+        </div>
+        <Box
+            sx={{
+              margin: "0px 0px 54px 0px",
+              borderTop: "1px solid rgba(191, 204, 217, 0.2)"
+            }}
+          />
+        <Footer
+          handleProductClick={(s)=>handleScrollToSection(s)}
+        />
       </Box>
     </Box>
   )
