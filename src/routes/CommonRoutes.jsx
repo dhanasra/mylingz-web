@@ -7,6 +7,7 @@ import AboutUs from '../pages/info/AboutUs';
 import ForwardLink from "../pages/links/ForwardLink";
 import BioLink from "../pages/biolink/BioLink";
 import HomePage from "../pages/home/HomePage";
+import DiscoverPage from "../pages/discover/DiscoverPage";
 
 const CommonRoutes = {
     path: '/',
@@ -15,6 +16,10 @@ const CommonRoutes = {
       {
         path: '',
         element: <HomePage />
+      },
+      {
+        path: 'discover',
+        element: <DiscoverPage />
       },
       {
         path: 'legal/privacy',

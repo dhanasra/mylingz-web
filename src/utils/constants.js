@@ -1,0 +1,1 @@
+export const PLAYSTORE_URL = "https://play.google.com/store/apps/details?id=com.spiderlingz.mylingz&pli=1";

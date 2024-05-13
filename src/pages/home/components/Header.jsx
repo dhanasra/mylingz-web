@@ -3,6 +3,7 @@ import LogoImg from '../../../assets/logo.png'
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { MenuOutlined } from "@ant-design/icons";
+import { PLAYSTORE_URL } from "../../../utils/constants";
 
 const Header = ({handleClick, handleDrawer})=>{
 
@@ -20,6 +21,11 @@ const Header = ({handleClick, handleDrawer})=>{
       width: "140px",
     }
   }
+
+  const openPlayStore=()=>{
+    window.open(PLAYSTORE_URL, '_blank', 'noopener')
+  }
+
 
   return (
     <Box sx={{
@@ -46,7 +52,7 @@ const Header = ({handleClick, handleDrawer})=>{
             <Button sx={btnStyle} onClick={()=>handleClick('features')}>
               <Typography variant="h5" color={"#333"} fontWeight={400}>Features</Typography>
             </Button>
-            <Button sx={btnStyle} onClick={()=>handleClick('pricing')} >
+            <Button sx={btnStyle} onClick={()=>handleClick('discover')} >
               <Typography variant="h5" color={"#333"} fontWeight={400}>Discover</Typography>
             </Button>
             <Button sx={btnStyle} onClick={()=>handleClick('testimonials')}>
@@ -60,7 +66,7 @@ const Header = ({handleClick, handleDrawer})=>{
         <Stack direction={"row"} alignItems={"center"} spacing={2}>
           <Button 
             variant="contained" 
-            onClick={()=>navigate('/register')}
+            onClick={()=>openPlayStore()}
             sx={{width: "140px",fontWeight: 500, display: `${!isMobileScreen? "none": ""}`, borderRadius: "30px", backgroundImage: 'linear-gradient(45deg, #4D478B 30%, #151325 90%)'}}>Download App !</Button>
           {
             !isMdScreen && (
