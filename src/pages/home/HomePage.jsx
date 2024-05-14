@@ -9,6 +9,7 @@ import Faq from "./components/Faq";
 import Footer from "./components/Footer";
 import Contact from "./components/Contact";
 import HomeDrawer from "./components/HomeDrawer";
+import Application from "./components/Application";
 
 const HomePage = ()=>{
 
@@ -18,6 +19,7 @@ const HomePage = ()=>{
   const sectionRefs = {
     home: useRef(null),
     features: useRef(null),
+    application: useRef(null),
     testimonials: useRef(null),
     faq: useRef(null),
     contact: useRef(null)
@@ -51,6 +53,9 @@ const HomePage = ()=>{
         </div>
         <div ref={sectionRefs.features}>
           <Features />
+        </div>
+        <div ref={sectionRefs.application}>
+          <Application />
         </div>
         <div ref={sectionRefs.testimonials}>
           <Testimonials />

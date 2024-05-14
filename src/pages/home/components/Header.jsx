@@ -53,6 +53,9 @@ const Header = ({handleClick, handleDrawer})=>{
             <Button sx={btnStyle} onClick={()=>handleClick('discover')} >
               <Typography variant="h5" color={"#333"} fontWeight={400}>Discover</Typography>
             </Button>
+            <Button sx={btnStyle} onClick={()=>handleClick('application')} >
+              <Typography variant="h5" color={"#333"} fontWeight={400}>Application</Typography>
+            </Button>
             <Button sx={btnStyle} onClick={()=>handleClick('testimonials')}>
               <Typography variant="h5" color={"#333"} fontWeight={400}>Testimonials</Typography>
             </Button>

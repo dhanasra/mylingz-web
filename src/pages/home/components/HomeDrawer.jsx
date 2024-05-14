@@ -43,6 +43,10 @@ function HomeDrawer({open, onClose, handleClick}) {
           <Typography sx={{fontWeight: "500", fontSize: "20px"}}>Discover</Typography>
         </ListItemButton>
         <Divider sx={{borderColor: "#afafaf"}}/>
+        <ListItemButton onClick={()=>handleClick("application")} sx={{justifyContent: "center", my: 2}}>
+          <Typography sx={{fontWeight: "500", fontSize: "20px"}}>Application</Typography>
+        </ListItemButton>
+        <Divider sx={{borderColor: "#afafaf"}}/>
         <ListItemButton onClick={()=>handleClick("testimonials")} sx={{justifyContent: "center", my: 2}}>
           <Typography sx={{fontWeight: "500", fontSize: "20px"}}>Testimonials</Typography>
         </ListItemButton>
