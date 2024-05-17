@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { LocalDB, USER, USER_ID } from './db/local_db';
 import { auth, db } from './firebase';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
 import responseHandler from '../utils/response-handler';
 
 export const signup = async ({ firstname, lastname, email, password }) => {
@@ -91,4 +91,13 @@ const handleSuccess = (user, message)=>{
 const handleError = (error)=>{
   console.log(error)
   return responseHandler(false, error?.message, error.code ? error.code : 500);
+}
+
+export const forgotPassword = async(email)=>{
+  try{
+    await sendPasswordResetEmail(auth, email);
+    return responseHandler(true, 'Mail sent successfully !');;
+  }catch(error){
+    return handleError(error);
+  }
 }

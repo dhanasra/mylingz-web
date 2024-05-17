@@ -2,6 +2,7 @@
 // project import
 import MinimalLayout from "../layout/minimal/MinimalLayout";
 import LoginPage from "../pages/auth/LoginPage";
+import PasswordForgotPage from "../pages/auth/PasswordForgotPage";
 import RegisterPage from "../pages/auth/RegisterPage";
 
 const AuthRoutes = {
@@ -15,6 +16,10 @@ const AuthRoutes = {
       {
         path: 'register',
         element: <RegisterPage />
+      },
+      {
+        path: 'password/forgot',
+        element: <PasswordForgotPage />
       }
     ]
   };
