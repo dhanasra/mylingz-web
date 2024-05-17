@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from 'firebase/auth';
 import { getFirestore, query, collection, where, doc } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -11,8 +12,14 @@ const firebaseConfig = {
   measurementId: "G-ZRW3ZJ8LL7"
 };
 
+
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+const auth = getAuth(app);
+
+export { auth, db };
 
 export const linkData = (short) => query(collection(db, "LINKS"), where("short", "==", short));
 export const userData = (id) => query(collection(db, "USERS"), where("id", "==", id));
@@ -27,3 +34,4 @@ export const biolinkAnalytics = (userId) => doc(analyticsCollectionRef, userId);
 
 const biolinksCollectionRef = collection(db, "BIOLINKS");
 export const messagesData = (userId) => collection(doc(biolinksCollectionRef, userId), "MESSAGES");
+
