@@ -14,8 +14,8 @@ const ForwardLink = () => {
       const snapshots = await getDocs(linkData(linkId));
       if(snapshots.docs.length>0){
         const shorLink = snapshots.docs[0].data();
-        const visited = Cookies.get("history");
-        if(shorLink.createdBy && shorLink.short && visited!==shorLink.short){
+        // const visited = Cookies.get("history");
+        if(shorLink.createdBy && shorLink.short ){
           Cookies.set("visited", true);
           Cookies.set("history", shorLink.short);
           const location = await fetchDeviceLocation();
@@ -24,7 +24,10 @@ const ForwardLink = () => {
             device: getDeviceType(),
             location: location
           }
-          await addDoc( analyticsData(shorLink.createdBy, shorLink.short), data);
+
+          console.log(data)
+          const resp = await addDoc( analyticsData(shorLink.createdBy, shorLink.short), data);
+          console.log(resp.id)
         }
         let link = shorLink.url;
         if (!link.includes("https")) {

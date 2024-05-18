@@ -21,7 +21,7 @@ const EditLink = ({linkData, onSave, onCancel})=>{
         backhalf: Yup.string().max(255).required("Backhalf is required"),
         destination: Yup.string().max(255).required("Destination url is required")
       })}
-      onSubmit={async (values, { setErrors, setStatus, setSubmitting, resetForm})=>{
+      onSubmit={async (values, { setErrors, setStatus, setSubmitting})=>{
         try {
           setLoading(true);
 

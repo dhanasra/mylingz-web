@@ -3,16 +3,16 @@ import { Avatar, Box, Button, Divider, Grid, Stack, Typography } from "@mui/mate
 import MainCard from "../../components/MainCard"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { deleteLink, getLinkDetails } from "../../network/link_service"
+import { deleteLink, getLinkAnalytics, getLinkDetails } from "../../network/link_service"
 import { formatDate } from "../../utils/date-fns"
 import CountUp from 'react-countup';
-import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
+import { PiCursorClick, PiDeviceMobileBold, PiMapPin } from "react-icons/pi";
 import ShareDialog from "../../components/dialogs/ShareDialog"
 import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
 import ConfirmDialog from "../../components/dialogs/ConfirmDialog"
-import { linkData } from "../../network/firebase"
+import BarChart from "./components/BarChart"
 
-  const LinkDetailsPage =()=>{
+const LinkDetailsPage =()=>{
 
     const { linkId } = useParams();
     const [ data, setData ] = useState(null);
@@ -24,30 +24,31 @@ import { linkData } from "../../network/firebase"
 
     const navigate = useNavigate();
 
-    const [insights ] = useState([
+    const [chartData, setChartData ] = useState([]);
+    const [insights, setInsights] = useState([
       {
-          id: "viewCount",
-          name: "Total Views",
+          id: "totalClicks",
+          name: "Total Clicks",
           count: 0,
-          icon: <PiEye fontSize={"24px"} color="#ff2052"/>
+          icon: <PiCursorClick fontSize={"24px"} color="#ff2052"/>
       },
       {
-          id: "uniqueVisitCount",
-          name: "Total Unique Visitors",
+          id: "todaysClicks",
+          name: "Today's Clicks",
           count: 0,
-          icon: <PiPerson fontSize={"24px"} color="#ff5e20"/>
+          icon: <PiCursorClick fontSize={"24px"} color="#ff5e20"/>
       },
       {
-          id: "savedCount",
-          name: "Total Downloads",
-          count: 0,
-          icon: <PiDownload fontSize={"24px"} color="#2051ff"/>
+          id: "topLocation",
+          name: "Top Location",
+          value: 'N/A',
+          icon: <PiMapPin fontSize={"24px"} color="#2051ff"/>
       },
       {
-          id: "webClickCount",
-          name: "Total Links Taps",
-          count: 0,
-          icon: <PiLink fontSize={"24px"} color="#5f20ff"/>
+          id: "topDevice",
+          name: "Top Device",
+          value: 'N/A',
+          icon: <PiDeviceMobileBold fontSize={"24px"} color="#5f20ff"/>
       }
     ]);
 
@@ -55,13 +56,35 @@ import { linkData } from "../../network/firebase"
   
       const init = async () => {
         const d = await getLinkDetails({linkId});
+        const analytics = (await getLinkAnalytics({linkId})).data;
+
+        const updatedInsights = insights.map(insight => {
+          switch (insight.id) {
+              case 'totalClicks':
+                  return { ...insight, count: analytics.totalClicks };
+              case 'todaysClicks':
+                  return { ...insight, count: analytics.todayClicks };
+              case 'topLocation':
+                  return { ...insight, value: analytics.location };
+              case 'topDevice':
+                  return { ...insight, value: analytics.device };
+              default:
+                  return insight;
+          }
+        });
+
+
+        console.log(analytics)
+
         if(d.success){
           setData(d.data);
+          setInsights(updatedInsights);
+          setChartData(analytics.chart);
         }
       };
     
       init();
-    }, [ linkId ]);
+    });
 
     const copyLinkToClipboard =async()=>{
       setCopied(true);
@@ -180,9 +203,13 @@ import { linkData } from "../../network/firebase"
                                   {
                                       <Stack>
                                           <Typography variant="body1" color={"grey"}>{insight.name}</Typography>
-                                          <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+                                          <Stack direction={"row"} p={ insight.count!=null ? "0px": "10px 0"} justifyContent={"space-between"} alignItems={"center"}>
                                               {insight.icon}
-                                              <CountUp start={0} end={insight?.count??0} duration={2.5} separator="," style={{fontSize: "32px"}} />
+                                              {
+                                                insight.count!=null
+                                                ? <CountUp start={0} end={insight?.count??0} duration={2.5} separator="," style={{fontSize: "32px"}} />
+                                                : <Typography style={{fontSize: "20px"}}>{insight?.value}</Typography>
+                                              } 
                                           </Stack>
                                       </Stack>
                                   }
@@ -192,6 +219,9 @@ import { linkData } from "../../network/firebase"
                   }
               </Grid>
           </Grid>
+        <Grid item xs={12}>
+          <BarChart chartData={chartData}/>
+        </Grid>
       </Grid>
       </>
     )
