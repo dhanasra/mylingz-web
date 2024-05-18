@@ -6,7 +6,7 @@ export default function OutlinedInput(theme) {
     MuiOutlinedInput: {
       styleOverrides: {
         input: {
-          padding: '10.5px 14px 10.5px 12px'
+          padding: '13px 14px 13px 12px'
         },
         notchedOutline: {
           borderColor: theme.palette.grey[300]
@@ -18,7 +18,7 @@ export default function OutlinedInput(theme) {
           '&.Mui-focused': {
             boxShadow: `0 0 0 2px ${alpha(theme.palette.primary.main, 0.2)}`,
             '& .MuiOutlinedInput-notchedOutline': {
-              border: `1px solid ${theme.palette.primary.light}`
+              border: `1px solid #dbe0eb`
             }
           },
           '&.Mui-error': {
@@ -28,7 +28,7 @@ export default function OutlinedInput(theme) {
             '&.Mui-focused': {
               boxShadow: `0 0 0 2px ${alpha(theme.palette.error.main, 0.2)}`,
               '& .MuiOutlinedInput-notchedOutline': {
-                border: `1px solid ${theme.palette.error.light}`
+                border: `1px solid #dbe0eb`
               }
             }
           }

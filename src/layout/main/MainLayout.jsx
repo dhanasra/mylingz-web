@@ -49,7 +49,7 @@ const MainLayout = () => {
   }, [drawerOpen]);
 
   return (
-    <Box sx={{ display: 'flex', width: '100%', position: 'relative' }}>
+    <Box sx={{ display: 'flex', width: '100%', height: '100vh', position: 'relative', background: '#fff' }}>
 
       { isLoading && <WindowLoader/>}
       <Header open={open} handleDrawerToggle={handleDrawerToggle} />
