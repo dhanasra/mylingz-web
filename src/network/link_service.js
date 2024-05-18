@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { LocalDB, USER_ID } from "./db/local_db";
 import { db } from "./firebase";
 import responseHandler from "../utils/response-handler";
@@ -37,7 +37,18 @@ export const updateLink = async ({ title, short, url, id }) => {
     const docRef = doc(db, "LINKS", id);
     await updateDoc(docRef, linkData);
   
-    return responseHandler(true, 'Link added successfully !', linkData);
+    return responseHandler(true, 'Link updated successfully !', linkData);
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+export const deleteLink = async (id) => {
+  try {
+    const docRef = doc(db, "LINKS", id);
+    await deleteDoc(docRef);
+  
+    return responseHandler(true, 'Link deleted successfully !');
   } catch (error) {
     return handleError(error);
   }

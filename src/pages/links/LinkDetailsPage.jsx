@@ -1,14 +1,16 @@
-import { ArrowLeftOutlined, CalendarOutlined, CheckOutlined, CopyOutlined, EditOutlined, ShareAltOutlined } from "@ant-design/icons"
+import { ArrowLeftOutlined, CalendarOutlined, CheckOutlined, CopyOutlined, DeleteOutlined, EditOutlined, ShareAltOutlined } from "@ant-design/icons"
 import { Avatar, Box, Button, Divider, Grid, Stack, Typography } from "@mui/material"
 import MainCard from "../../components/MainCard"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { getLinkDetails } from "../../network/link_service"
+import { deleteLink, getLinkDetails } from "../../network/link_service"
 import { formatDate } from "../../utils/date-fns"
 import CountUp from 'react-countup';
 import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
 import ShareDialog from "../../components/dialogs/ShareDialog"
 import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
+import ConfirmDialog from "../../components/dialogs/ConfirmDialog"
+import { linkData } from "../../network/firebase"
 
   const LinkDetailsPage =()=>{
 
@@ -16,8 +18,9 @@ import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
     const [ data, setData ] = useState(null);
 
     const [ copied, setCopied ] = useState(false);
-    const [ open, setOpen ] = useState(false);
+    const [ openShare, setOpenShare ] = useState(false);
     const [ openEdit, setOpenEdit ] = useState(false);
+    const [ openDelete, setOpenDelete ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -71,10 +74,24 @@ import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
       setData({ ...data, ...updated });
     }
 
+    const onDelete =async()=>{
+      setOpenDelete(false);
+      await deleteLink(data.id);
+      navigate('/links')
+    }
+
     return (
       <>
+      <ConfirmDialog
+        open={openDelete} 
+        onOk={onDelete} 
+        onCancel={()=>setOpenDelete(false)} 
+        btnTxt={"Delete"}
+        title={"Are you sure you want to delete?"}   
+        content={`By deleting ${data?.title} link, the people can't access this link. This process in can't be undone.`}
+      />
       <EditLinkDialog open={openEdit} handleCancel={()=>setOpenEdit(false)} linkData={data} onSave={onUpdate}/>
-      <ShareDialog open={open} handleCancel={()=>setOpen(false)} linkId={linkId}/>
+      <ShareDialog open={openShare} handleCancel={()=>setOpenShare(false)} linkId={linkId}/>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Stack direction={"row"} spacing={1} sx={{cursor: "pointer"}} onClick={()=>navigate('/links')}>
@@ -123,7 +140,7 @@ import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
                       </Stack>
                     </Button>
                   </Box>
-                  <Button variant="outlined" onClick={()=>setOpen(true)}>
+                  <Button variant="outlined" onClick={()=>setOpenShare(true)}>
                     <Stack direction={"row"} spacing={1}>
                       <ShareAltOutlined/>
                       <Typography>Share</Typography>
@@ -134,6 +151,9 @@ import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
                       <EditOutlined/>
                       <Typography>Edit</Typography>
                     </Stack>
+                  </Button> 
+                  <Button variant="outlined" sx={{minWidth: "30px"}} onClick={()=>setOpenDelete(true)}>
+                    <DeleteOutlined style={{ color: "red" }}/>
                   </Button> 
                 </Stack>
               </Grid>
