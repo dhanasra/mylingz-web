@@ -58,12 +58,3 @@ SimpleBarScroll.propTypes = {
   children: PropTypes.node,
   sx: PropTypes.object
 };
-
-
- {/* <RootStyle>
-        <SimpleBarStyle timeout={500} clickOnTrack={false} sx={sx} {...other}>
-          {/* <BrowserView> */}
-          // {children}
-          {/* </BrowserView> */}
-        {/* </SimpleBarStyle> */}
-      {/* </RootStyle> */} 
