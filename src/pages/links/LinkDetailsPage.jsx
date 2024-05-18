@@ -8,6 +8,7 @@ import { formatDate } from "../../utils/date-fns"
 import CountUp from 'react-countup';
 import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
 import ShareDialog from "../../components/dialogs/ShareDialog"
+import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
 
   const LinkDetailsPage =()=>{
 
@@ -16,6 +17,7 @@ import ShareDialog from "../../components/dialogs/ShareDialog"
 
     const [ copied, setCopied ] = useState(false);
     const [ open, setOpen ] = useState(false);
+    const [ openEdit, setOpenEdit ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -64,13 +66,14 @@ import ShareDialog from "../../components/dialogs/ShareDialog"
       setTimeout(()=>setCopied(false), 2000);
     }
 
-    const shareLink =async()=>{
-      setOpen(true);
+    const onUpdate =async(updated)=>{
+      setOpenEdit(false);
+      setData({ ...data, ...updated });
     }
-
 
     return (
       <>
+      <EditLinkDialog open={openEdit} handleCancel={()=>setOpenEdit(false)} linkData={data} onSave={onUpdate}/>
       <ShareDialog open={open} handleCancel={()=>setOpen(false)} linkId={linkId}/>
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -120,13 +123,13 @@ import ShareDialog from "../../components/dialogs/ShareDialog"
                       </Stack>
                     </Button>
                   </Box>
-                  <Button variant="outlined" onClick={shareLink}>
+                  <Button variant="outlined" onClick={()=>setOpen(true)}>
                     <Stack direction={"row"} spacing={1}>
                       <ShareAltOutlined/>
                       <Typography>Share</Typography>
                     </Stack>
                   </Button>  
-                  <Button variant="outlined">
+                  <Button variant="outlined" onClick={()=>setOpenEdit(true)}>
                     <Stack direction={"row"} spacing={1}>
                       <EditOutlined/>
                       <Typography>Edit</Typography>
