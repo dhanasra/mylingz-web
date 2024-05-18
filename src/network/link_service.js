@@ -52,6 +52,30 @@ export const getLinkDetails = async ({ linkId }) => {
   }
 };
 
+
+export const getLinks = async () => {
+  try {
+
+    const userId = LocalDB.getItem(USER_ID)
+
+    const q = query(collection(db, "LINKS"), where("createdBy", "==", userId))
+    const querySnapshot = await getDocs(q);
+
+    let links = [];
+
+    if (!querySnapshot.empty) {
+      links = querySnapshot.docs.map((doc)=>{
+        const data = doc.data();
+        return { id: doc.id, ...data }
+      })
+    }
+
+    return responseHandler(true, 'Link details fetched successfully !', 200, { data: links });
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
 const handleError = (error)=>{
   console.log(error)
   return responseHandler(false, error?.message, error.code ? error.code : 500);
