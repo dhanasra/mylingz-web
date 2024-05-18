@@ -2,7 +2,7 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 import { Box, Button, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import AppImg from "../../../assets/app-3d.png";
-import { PLAYSTORE_URL } from "../../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Banner = ()=>{
 
@@ -11,9 +11,7 @@ const Banner = ()=>{
   // const isMdScreen = useMediaQuery('(min-width:960px)');
   const isMobileScreen = useMediaQuery('(min-width:600px)');
 
-  const openPlayStore=()=>{
-    window.open(PLAYSTORE_URL, '_blank', 'noopener')
-  }
+  const navigate = useNavigate();
 
   return (
     <Grid container>
@@ -71,7 +69,7 @@ const Banner = ()=>{
           <Grid item xs={12} sx={{justifyContent: "center", display: "flex"}}>
 
             <Button
-              onClick={()=>openPlayStore()}
+              onClick={()=>navigate('/register')}
               sx={{
                 color: "white",
                 background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -92,7 +90,7 @@ const Banner = ()=>{
                       fontSize: "16px",
                     },
                   }}
-                >Download Now !</Typography>
+                >Get Started !</Typography>
                 <ArrowRightOutlined style={{fontSize: !isMobileScreen ? "16px" :"20px"}}/>
               </Stack>
             </Button>

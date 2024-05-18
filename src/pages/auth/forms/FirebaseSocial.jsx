@@ -6,12 +6,29 @@ import { useMediaQuery, Button, Stack } from '@mui/material';
 import Google from '../../../assets/icons/google.svg';
 import Github from '../../../assets/icons/github.svg';
 import { githubLogin, googleLogin } from '../../../network/auth_service';
+import { useNavigate } from 'react-router-dom';
 
 // ==============================|| FIREBASE - SOCIAL BUTTON ||============================== //
 
 const FirebaseSocial = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const navigate = useNavigate();
+
+  const authWithGoogle = async()=>{
+    const data =await googleLogin();
+    if(data.success){
+      navigate('/links')
+    }
+  }
+
+  const authWithGithub = async()=>{
+    const data =await githubLogin();
+    if(data.success){
+      navigate('/links')
+    }
+  }
   
 
   return (
@@ -26,7 +43,7 @@ const FirebaseSocial = () => {
         color="secondary"
         fullWidth={!matchDownSM}
         startIcon={<img src={Google} alt="Google" />}
-        onClick={()=>googleLogin()}
+        onClick={authWithGoogle}
       >
         {!matchDownSM && 'Google'}
       </Button>
@@ -35,7 +52,7 @@ const FirebaseSocial = () => {
         color="secondary"
         fullWidth={!matchDownSM}
         startIcon={<img src={Github} alt="Github" />}
-        onClick={()=>githubLogin()}
+        onClick={authWithGithub}
       >
         {!matchDownSM && 'Github'}
       </Button>

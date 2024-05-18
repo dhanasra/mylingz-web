@@ -73,31 +73,17 @@ const AuthRegister = () => {
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
 
-            await signup({ 
+            const data = await signup({ 
               email: values.email, 
               password: values.password,
               firstname: values.firstname,
               lastname: values.lastname
             })
 
-            // const data = await signUpWithEmail({
-            //   email: values.email, 
-            //   password: values.password,
-            //   firstname: values.firstname,
-            //   lastname: values.lastname,
-            //   company: values.company
-            // });
+            if(data.success){
+              navigate('/links')
+            }
 
-            // if(!data){
-            //   return;
-            // }
-
-            // await initApp();
-
-            // setStatus({ success: true });
-            // setSubmitting(false);
-            
-            // navigate('/loading');
           } catch (err) {
             console.error(err);
             setStatus({ success: false });

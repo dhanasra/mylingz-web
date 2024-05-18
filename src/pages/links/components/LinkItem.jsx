@@ -45,6 +45,7 @@ const LinkItem = ({ data })=>{
                       ()=>openLink(`mylingz.web.app/${data?.short}`)
                     }
                     sx={{
+                      cursor: "pointer",
                       color: "#2a5bd7",
                       fontWeight: 600,
                       textDecoration: 'none', 
@@ -60,6 +61,7 @@ const LinkItem = ({ data })=>{
                     variant="h6" 
                     fontWeight={500}
                     sx={{
+                      cursor: "pointer",
                       textDecoration: 'none', 
                       '&:hover': {
                         textDecoration: 'underline', 

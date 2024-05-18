@@ -64,18 +64,8 @@ const AuthLogin = () => {
             const data = await login({email: values.email, password: values.password});
 
             if(data.success){
-              alert(data.message);
+              navigate('/links')
             }
-
-
-            // if(!data){
-            //   return;
-            // }
-
-            // setStatus({ success: true });
-            // setSubmitting(false);
-
-            // navigate('/loading');
 
           } catch (err) {
             setStatus({ success: false });
