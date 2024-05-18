@@ -62,6 +62,8 @@ const AuthLogin = () => {
 
             const data = await login({email: values.email, password: values.password});
 
+            console.log(data)
+
             if(data.success){
               navigate('/links')
             }

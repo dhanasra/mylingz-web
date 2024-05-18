@@ -44,7 +44,7 @@ export const getLinkDetails = async ({ linkId }) => {
       linkData = { id: doc.id, ...data };
     }
 
-    return responseHandler(true, 'Link details fetched successfully !', 200, { data: linkData });
+    return responseHandler(true, 'Link details fetched successfully !', linkData);
   } catch (error) {
     return handleError(error);
   }
@@ -68,7 +68,7 @@ export const getLinks = async () => {
       })
     }
 
-    return responseHandler(true, 'Link details fetched successfully !', 200, { data: links });
+    return responseHandler(true, 'Link details fetched successfully !', links);
   } catch (error) {
     return handleError(error);
   }
@@ -76,5 +76,5 @@ export const getLinks = async () => {
 
 const handleError = (error)=>{
   console.log(error)
-  return responseHandler(false, error?.message, error.code ? error.code : 500);
+  return responseHandler(false, error?.message, null, error.code ? error.code : 500);
 }

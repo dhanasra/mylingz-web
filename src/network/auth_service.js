@@ -30,6 +30,7 @@ export const login = async ({ email, password }) => {
 
     return handleSuccess(user, "Logged in Successfully !")
   } catch (error) {
+    console.log(error)
     return handleError(error);
   } 
 };
@@ -90,7 +91,7 @@ const handleSuccess = (user, message)=>{
 
 const handleError = (error)=>{
   console.log(error)
-  return responseHandler(false, error?.message, error.code ? error.code : 500);
+  return responseHandler(false, error?.message, null, error.code ? error.code : 500);
 }
 
 export const forgotPassword = async(email)=>{

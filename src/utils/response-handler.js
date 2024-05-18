@@ -1,10 +1,10 @@
 // src/responseHandler.js
 
-const responseHandler = (success, message, status = 200, {data = null}) => ({
+const responseHandler = (success, message, data, status = 200) => ({
   success,
   status,
   message,
-  data 
+  data
 });
 
 export default responseHandler;
