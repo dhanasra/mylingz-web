@@ -29,7 +29,6 @@ import AnimateButton from '../../../components/AnimateButton';
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { login } from '../../../network/auth_service';
-import { DBKeys, LocalDB } from '../../../network/db/local_db';
 
 
 const AuthLogin = () => {

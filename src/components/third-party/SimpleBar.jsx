@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/system';
+import { styled } from '@mui/system';
 import { Box } from '@mui/material';
 import SimpleBar from 'simplebar-react';
 import { BrowserView, MobileView } from 'react-device-detect';
@@ -12,26 +12,26 @@ const RootStyle = styled(BrowserView)({
 });
 
 // styled SimpleBar component
-const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
-  maxHeight: '300px',
-  '& .simplebar-scrollbar': {
-    '&:before': {
-      backgroundColor: alpha(theme.palette.grey[500], 0.48)
-    },
-    '&.simplebar-visible:before': {
-      opacity: 1
-    }
-  },
-  '& .simplebar-track.simplebar-vertical': {
-    width: 10
-  },
-  '& .simplebar-track.simplebar-horizontal .simplebar-scrollbar': {
-    height: 6
-  },
-  '& .simplebar-mask': {
-    zIndex: 'inherit'
-  }
-}));
+// const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
+//   maxHeight: '300px',
+//   '& .simplebar-scrollbar': {
+//     '&:before': {
+//       backgroundColor: alpha(theme.palette.grey[500], 0.48)
+//     },
+//     '&.simplebar-visible:before': {
+//       opacity: 1
+//     }
+//   },
+//   '& .simplebar-track.simplebar-vertical': {
+//     width: 10
+//   },
+//   '& .simplebar-track.simplebar-horizontal .simplebar-scrollbar': {
+//     height: 6
+//   },
+//   '& .simplebar-mask': {
+//     zIndex: 'inherit'
+//   }
+// }));
 
 // ==============================|| SIMPLE SCROLL BAR  ||============================== //
 

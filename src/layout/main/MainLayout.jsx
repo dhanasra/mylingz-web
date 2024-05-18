@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, CircularProgress, Toolbar, useMediaQuery } from '@mui/material';
+import { Box, Toolbar, useMediaQuery } from '@mui/material';
 
 // project import
 import Header from './header/Header';

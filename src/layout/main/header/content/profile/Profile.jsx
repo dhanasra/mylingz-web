@@ -6,8 +6,6 @@ import {
   Box,
   ButtonBase,
   ClickAwayListener,
-  Grid,
-  IconButton,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -17,13 +15,12 @@ import {
   Typography
 } from '@mui/material';
 
-import { CustomerServiceOutlined, LogoutOutlined, MessageOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
+import { CustomerServiceOutlined, LogoutOutlined, MessageOutlined, UserOutlined } from '@ant-design/icons';
 import Transitions from '../../../../../components/Transitions';
 import MainCard from '../../../../../components/MainCard';
 import { useSelector } from 'react-redux';
 // import { clearCookies } from '../../../../../utils/utils';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -42,7 +39,6 @@ TabPanel.propTypes = {
 function Profile() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.app.user);
 
   const anchorRef = useRef(null);

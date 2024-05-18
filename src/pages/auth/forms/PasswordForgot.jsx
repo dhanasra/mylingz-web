@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 // material-ui
 import {
@@ -22,8 +21,6 @@ import { forgotPassword } from '../../../network/auth_service';
 
 
 const PasswordForgot = () => {
-
-  const navigate = useNavigate();
 
   return (
     <>

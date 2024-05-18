@@ -1,5 +1,5 @@
 // material-ui
-import { Button, CardMedia, Link, Stack, Typography } from '@mui/material';
+import { Button, CardMedia, Stack, Typography } from '@mui/material';
 
 // project import
 

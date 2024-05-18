@@ -33,8 +33,6 @@ export const saveLink = async ({ title, short, url, bioLink=false, bioLinkBtnLab
 export const getLinkDetails = async ({ linkId }) => {
   try {
 
-    const userId = LocalDB.getItem(USER_ID)
-
     const q = query(collection(db, "LINKS"), where("short", "==", linkId))
     const querySnapshot = await getDocs(q);
 

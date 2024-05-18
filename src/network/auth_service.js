@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { LocalDB, USER, USER_ID } from './db/local_db';
 import { auth, db } from './firebase';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
 import responseHandler from '../utils/response-handler';
 
 export const signup = async ({ firstname, lastname, email, password }) => {

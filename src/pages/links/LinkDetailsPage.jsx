@@ -15,7 +15,7 @@ import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
 
     const navigate = useNavigate();
 
-    const [insights, setInsights] = useState([
+    const [insights ] = useState([
       {
           id: "viewCount",
           name: "Total Views",
@@ -55,7 +55,7 @@ import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
       };
     
       init();
-    }, []);
+    }, [ linkId ]);
 
     return (
       <Grid container spacing={3}>

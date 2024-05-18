@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Grid, Stack, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import Logo from "../../../components/AppLogo";
 import AuthCard from './AuthCard';
 

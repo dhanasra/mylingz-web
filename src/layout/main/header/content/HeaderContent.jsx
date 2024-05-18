@@ -1,12 +1,9 @@
 // material-ui
 import { Box, IconButton, useMediaQuery } from '@mui/material';
 import Profile from './profile/Profile';
-import Search from './Search';
-import Notification from './Notification';
 import MobileSection from './MobileSection';
-import { SettingOutlined, TranslationOutlined } from '@ant-design/icons';
+import { SettingOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import FullScreen from './screen-mode/FullScreen';
 import { useNavigate } from 'react-router-dom';
 

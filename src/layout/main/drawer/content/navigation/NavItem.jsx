@@ -31,7 +31,7 @@ const NavItem = ({ item, level }) => {
   }
 
   const itemHandler = (id) => {
-    if(id=="feature-request"){
+    if(id==="feature-request"){
       // dispatch(openFeatureRequest());
     }else{
       dispatch(activeItem({ openItem: [id] }));
