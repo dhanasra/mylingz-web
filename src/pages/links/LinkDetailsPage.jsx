@@ -1,5 +1,5 @@
-import { ArrowLeftOutlined, CalendarOutlined, CheckCircleFilled, CheckOutlined, CopyOutlined, EditOutlined, ShareAltOutlined } from "@ant-design/icons"
-import { Alert, Avatar, Box, Button, Divider, Grid, Stack, Typography } from "@mui/material"
+import { ArrowLeftOutlined, CalendarOutlined, CheckOutlined, CopyOutlined, EditOutlined, ShareAltOutlined } from "@ant-design/icons"
+import { Avatar, Box, Button, Divider, Grid, Stack, Typography } from "@mui/material"
 import MainCard from "../../components/MainCard"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
@@ -7,7 +7,7 @@ import { getLinkDetails } from "../../network/link_service"
 import { formatDate } from "../../utils/date-fns"
 import CountUp from 'react-countup';
 import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
-import Toaster from "../../components/Toaster"
+import ShareDialog from "../../components/dialogs/ShareDialog"
 
   const LinkDetailsPage =()=>{
 
@@ -15,6 +15,7 @@ import Toaster from "../../components/Toaster"
     const [ data, setData ] = useState(null);
 
     const [ copied, setCopied ] = useState(false);
+    const [ open, setOpen ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -49,12 +50,9 @@ import Toaster from "../../components/Toaster"
   
       const init = async () => {
         const d = await getLinkDetails({linkId});
-
         if(d.success){
-          console.log(d.data)
           setData(d.data);
         }
-        
       };
     
       init();
@@ -66,7 +64,14 @@ import Toaster from "../../components/Toaster"
       setTimeout(()=>setCopied(false), 2000);
     }
 
+    const shareLink =async()=>{
+      setOpen(true);
+    }
+
+
     return (
+      <>
+      <ShareDialog open={open} handleCancel={()=>setOpen(false)} linkId={linkId}/>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Stack direction={"row"} spacing={1} sx={{cursor: "pointer"}} onClick={()=>navigate('/links')}>
@@ -115,7 +120,7 @@ import Toaster from "../../components/Toaster"
                       </Stack>
                     </Button>
                   </Box>
-                  <Button variant="outlined">
+                  <Button variant="outlined" onClick={shareLink}>
                     <Stack direction={"row"} spacing={1}>
                       <ShareAltOutlined/>
                       <Typography>Share</Typography>
@@ -165,6 +170,7 @@ import Toaster from "../../components/Toaster"
               </Grid>
           </Grid>
       </Grid>
+      </>
     )
   }
 

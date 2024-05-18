@@ -1,5 +1,5 @@
 
-import { Alert, Snackbar, SnackbarContent } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 
 const Toaster =({open, close, message})=>{
 
