@@ -4,11 +4,14 @@ import * as Yup from 'yup';
 import { hideLoader, showLoader } from "../../store/reducers/app";
 import { saveLink } from "../../network/link_service";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateLinkPage = ()=>{
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <Formik
       initialValues={{
@@ -25,16 +28,17 @@ const CreateLinkPage = ()=>{
         try {
           dispatch(showLoader());
 
+          const linkId = values.backhalf;
           const resp = await saveLink({
             title: values.title,
             url: values.destination,
-            short: values.backhalf
+            short: linkId
           })
 
           dispatch(hideLoader())
 
           if(resp.success){
-            
+            navigate(`/links/${linkId}/details`)
           }
 
         } catch (err) {

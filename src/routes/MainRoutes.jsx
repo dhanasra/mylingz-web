@@ -8,6 +8,7 @@ import CreateLinkPage from '../pages/links/CreateLinkPage';
 // render - dashboard
 const LinksList = Loadable(lazy(() => import('../pages/links/LinksListPage')));
 const CreateLink = Loadable(lazy(() => import('../pages/links/CreateLinkPage')));
+const LinkDetails = Loadable(lazy(() => import('../pages/links/LinkDetailsPage')));
 
 const MainRoutes = {
   path: '/',
@@ -20,6 +21,10 @@ const MainRoutes = {
     {
       path: '/links/create',
       element: <CreateLink />
+    },
+    {
+      path: '/links/:linkId/details',
+      element: <LinkDetails />
     }
   ]
 };
