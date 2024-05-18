@@ -1,5 +1,5 @@
-import { ArrowLeftOutlined, CalendarOutlined, CopyOutlined, EditOutlined, ShareAltOutlined } from "@ant-design/icons"
-import { Avatar, Box, Button, Divider, Grid, Stack, Typography } from "@mui/material"
+import { ArrowLeftOutlined, CalendarOutlined, CheckCircleFilled, CheckOutlined, CopyOutlined, EditOutlined, ShareAltOutlined } from "@ant-design/icons"
+import { Alert, Avatar, Box, Button, Divider, Grid, Stack, Typography } from "@mui/material"
 import MainCard from "../../components/MainCard"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
@@ -7,11 +7,14 @@ import { getLinkDetails } from "../../network/link_service"
 import { formatDate } from "../../utils/date-fns"
 import CountUp from 'react-countup';
 import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
+import Toaster from "../../components/Toaster"
 
   const LinkDetailsPage =()=>{
 
     const { linkId } = useParams();
     const [ data, setData ] = useState(null);
+
+    const [ copied, setCopied ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -57,6 +60,12 @@ import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
       init();
     }, [ linkId ]);
 
+    const copyLinkToClipboard =async()=>{
+      setCopied(true);
+      await navigator.clipboard.writeText(`https://mylingz.web.app/${data?.short}`)
+      setTimeout(()=>setCopied(false), 2000);
+    }
+
     return (
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -95,12 +104,17 @@ import { PiDownload, PiEye, PiLink, PiPerson } from "react-icons/pi";
 
               <Grid item xs={0} sm={6}>
                 <Stack spacing={1.5} direction={"row"} justifyContent={"end"}>
-                  <Button variant="outlined">
-                    <Stack direction={"row"} spacing={1}>
-                      <CopyOutlined/>
-                      <Typography>Copy</Typography>
-                    </Stack>
-                  </Button>
+                  <Box position={"relative"}>
+                    <Button variant="outlined" onClick={copyLinkToClipboard} sx={{
+                      background: copied ? "#90EE9033": null, 
+                      border: copied ? "1px solid green": null
+                    }}>
+                      <Stack direction={"row"} spacing={1}>
+                        { copied ? <CheckOutlined style={{color: "green"}}/> : <CopyOutlined/> }
+                        <Typography color={copied ? "green": null}>{ copied ? 'Copied' :'Copy' }</Typography>
+                      </Stack>
+                    </Button>
+                  </Box>
                   <Button variant="outlined">
                     <Stack direction={"row"} spacing={1}>
                       <ShareAltOutlined/>

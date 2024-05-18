@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getLinks } from "../../network/link_service";
 import LinkItem from "./components/LinkItem";
+import LinksEmpty from "./components/LinksEmpty";
 
 const LinksListPage = ()=>{
 
@@ -19,16 +20,20 @@ const LinksListPage = ()=>{
   
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Typography variant="h3" fontWeight={400}>Links</Typography>
+    links.length>0
+    ? (
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Typography variant="h3" fontWeight={400}>Links</Typography>
+        </Grid>
+        {
+          links.map((d)=>{
+            return <LinkItem key={d.id} data={d} />
+          })
+        }
       </Grid>
-      {
-        links.map((d)=>{
-          return <LinkItem key={d.id} data={d} />
-        })
-      }
-    </Grid>
+    )
+    : <LinksEmpty/>
   )
 }
 
