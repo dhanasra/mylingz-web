@@ -34,7 +34,7 @@ const LinksEmpty = ()=>{
             }}
           >
             <Button
-              onClick={()=>navigate('/links/create')}
+              onClick={()=>navigate('/app/links/create')}
               variant="contained"
               sx={{
                 width: "130px"

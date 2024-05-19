@@ -28,7 +28,7 @@ const LinksListPage = ()=>{
         <Grid item xs={12}>
           <Stack justifyContent={"space-between"} direction={"row"}>
             <Typography variant="h3" fontWeight={400}>Links</Typography>
-            <Button onClick={()=>navigate('/links/create')} variant="contained">Create New</Button>
+            <Button onClick={()=>navigate('/app/links/create')} variant="contained">Create New</Button>
           </Stack>
         </Grid>
         {

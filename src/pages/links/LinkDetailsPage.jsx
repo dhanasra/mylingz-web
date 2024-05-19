@@ -100,7 +100,7 @@ const LinkDetailsPage =()=>{
     const onDelete =async()=>{
       setOpenDelete(false);
       await deleteLink(data.id);
-      navigate('/links')
+      navigate('/app/links')
     }
 
     return (
@@ -117,7 +117,7 @@ const LinkDetailsPage =()=>{
       <ShareDialog open={openShare} handleCancel={()=>setOpenShare(false)} linkId={linkId}/>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Stack direction={"row"} spacing={1} sx={{cursor: "pointer"}} onClick={()=>navigate('/links')}>
+          <Stack direction={"row"} spacing={1} sx={{cursor: "pointer"}} onClick={()=>navigate('/app/links')}>
             <ArrowLeftOutlined/>
             <Typography>Back to list</Typography>
           </Stack>

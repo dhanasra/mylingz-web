@@ -10,19 +10,19 @@ const CreateLink = Loadable(lazy(() => import('../pages/links/CreateLinkPage')))
 const LinkDetails = Loadable(lazy(() => import('../pages/links/LinkDetailsPage')));
 
 const MainRoutes = {
-  path: '/',
+  path: '/app/',
   element: <MainLayout/>,
   children: [
     {
-      path: '/links',
+      path: 'links',
       element: <LinksList />
     },
     {
-      path: '/links/create',
+      path: 'links/create',
       element: <CreateLink />
     },
     {
-      path: '/links/:linkId/details',
+      path: 'links/:linkId/details',
       element: <LinkDetails />
     }
   ]

@@ -69,7 +69,7 @@ const Banner = ()=>{
           <Grid item xs={12} sx={{justifyContent: "center", display: "flex"}}>
 
             <Button
-              onClick={()=>navigate('/register')}
+              onClick={()=>navigate('/auth/register')}
               sx={{
                 color: "white",
                 background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',

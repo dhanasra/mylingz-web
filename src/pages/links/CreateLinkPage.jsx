@@ -38,7 +38,7 @@ const CreateLinkPage = ()=>{
           dispatch(hideLoader())
 
           if(resp.success){
-            navigate(`/links/${linkId}/details`)
+            navigate(`/app/links/${linkId}/details`)
           }
 
         } catch (err) {

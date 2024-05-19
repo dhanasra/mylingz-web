@@ -15,12 +15,13 @@ import {
   Typography
 } from '@mui/material';
 
-import { CustomerServiceOutlined, LogoutOutlined, MessageOutlined, UserOutlined } from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import Transitions from '../../../../../components/Transitions';
 import MainCard from '../../../../../components/MainCard';
 import { useSelector } from 'react-redux';
 // import { clearCookies } from '../../../../../utils/utils';
 import { useNavigate } from 'react-router-dom';
+import { LocalDB } from '../../../../../network/db/local_db';
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -55,15 +56,15 @@ function Profile() {
   };
 
   const handleLogout = async () => {
-    // clearCookies();
+    LocalDB.clearAll();
     setOpen(false);
-    navigate('/login');
+    navigate('/auth/login');
   };
 
-  const handleViewProfile = async () => {
-    setOpen(false);
-    navigate('/dashboard/profile');
-  };
+  // const handleViewProfile = async () => {
+  //   setOpen(false);
+  //   navigate('/dashboard/profile');
+  // };
 
   const iconBackColorOpen = 'grey.300';
 
@@ -121,7 +122,7 @@ function Profile() {
               >
                 <ClickAwayListener onClickAway={handleClose}>
                   <MainCard elevation={0} border={false} content={false}>
-                    <ListItemButton onClick={handleViewProfile}>
+                    {/* <ListItemButton onClick={handleViewProfile}>
                       <ListItemIcon>
                         <UserOutlined />
                       </ListItemIcon>
@@ -142,7 +143,7 @@ function Profile() {
                         <MessageOutlined />
                       </ListItemIcon>
                       <ListItemText primary="Send Feedback" />
-                    </ListItemButton>
+                    </ListItemButton> */}
                     <ListItemButton onClick={handleLogout}>
                       <ListItemIcon>
                         <LogoutOutlined />

@@ -65,7 +65,7 @@ const AuthLogin = () => {
             console.log(data)
 
             if(data.success){
-              navigate('/links')
+              navigate('/app/links')
             }
 
           } catch (err) {

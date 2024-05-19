@@ -19,14 +19,14 @@ const FirebaseSocial = () => {
   const authWithGoogle = async()=>{
     const data =await googleLogin();
     if(data.success){
-      navigate('/links')
+      navigate('/app/links')
     }
   }
 
   const authWithGithub = async()=>{
     const data =await githubLogin();
     if(data.success){
-      navigate('/links')
+      navigate('/app/links')
     }
   }
   

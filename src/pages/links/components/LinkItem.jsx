@@ -78,7 +78,7 @@ const LinkItem = ({ data })=>{
               <Button 
                 variant="outlined"
                 onClick={
-                  ()=>navigate(`${data.short}/details`)
+                  ()=>navigate(`/app/links/${data.short}/details`)
                 }
               >
                 <Stack direction={"row"} spacing={1}>

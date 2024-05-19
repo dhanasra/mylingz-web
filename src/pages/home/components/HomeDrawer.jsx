@@ -28,7 +28,7 @@ function HomeDrawer({open, onClose, handleClick}) {
             <CloseOutlined style={{color: "white"}}/>
           </IconButton>
           <Button
-            onClick={()=>navigate('/login')}
+            onClick={()=>navigate('/auth/login')}
             variant="outlined" sx={{width: "80px", borderColor: "white", borderRadius: "30px", fontWeight: 600, color: "white"}}>LOGIN</Button>
         </Stack>
         <ListItemButton onClick={()=>handleClick("home")} sx={{justifyContent: "center", my: 2}}>

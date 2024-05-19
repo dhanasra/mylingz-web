@@ -81,7 +81,7 @@ const AuthRegister = () => {
             })
 
             if(data.success){
-              navigate('/links')
+              navigate('/app/links')
             }
 
           } catch (err) {

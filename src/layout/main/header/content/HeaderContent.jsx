@@ -1,15 +1,13 @@
 // material-ui
-import { Box, IconButton, useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import Profile from './profile/Profile';
 import MobileSection from './MobileSection';
-import { SettingOutlined } from '@ant-design/icons';
-import { motion } from 'framer-motion';
 import FullScreen from './screen-mode/FullScreen';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const HeaderContent = ()=>{
     const matchesXs = useMediaQuery((theme) => theme.breakpoints.down('md'));
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <>
@@ -31,7 +29,7 @@ const HeaderContent = ()=>{
                 </IconButton>
             </Box> */}
 
-            <Box sx={{ flexShrink: 0, ml: 1 }}>
+            {/* <Box sx={{ flexShrink: 0, ml: 1 }}>
                     <IconButton
                         disableRipple
                         color="secondary"
@@ -47,7 +45,7 @@ const HeaderContent = ()=>{
                                     <SettingOutlined />
                         </motion.div>
                     </IconButton>
-            </Box>
+            </Box> */}
 
             {/* <Notification /> */}
             {!matchesXs && <Profile />}

@@ -1,11 +1,38 @@
-import { useRoutes } from 'react-router-dom';
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
 import CommonRoutes from './CommonRoutes';
 import AuthRoutes from './AuthRoutes';
 import MainRoutes from './MainRoutes';
+import { LocalDB, USER, USER_ID } from '../network/db/local_db';
+import { useEffect } from 'react';
 
+
+const CheckAuthAndStorage = ({ children }) => {
+  const navigate = useNavigate();
+  const currentLocation = useLocation();
+
+  useEffect(() => {
+
+    const user = LocalDB.getItem(USER)
+    const userId = LocalDB.getItem(USER_ID)
+
+    const authRoute = currentLocation.pathname.includes('auth/');
+    const appRoutes = currentLocation.pathname.includes('app/');
+
+    if(authRoute && user && userId){
+      navigate('/app/links');
+    }else if(appRoutes && !(user && userId)){
+      navigate('/auth/login');
+    }
+    
+  }, [navigate, currentLocation]);
+
+  return <>{children}</>;
+};
 
 export default function ThemeRoutes() {
   return (
-    useRoutes([ CommonRoutes, AuthRoutes, MainRoutes])
+    <CheckAuthAndStorage>
+     { useRoutes([ CommonRoutes, AuthRoutes, MainRoutes]) }
+    </CheckAuthAndStorage>
   );
 }

@@ -6,22 +6,22 @@ import PasswordForgotPage from "../pages/auth/PasswordForgotPage";
 import RegisterPage from "../pages/auth/RegisterPage";
 
 const AuthRoutes = {
-    path: '/',
-    element: <MinimalLayout />,
-    children: [
-      {
-        path: 'login',
-        element: <LoginPage />
-      },
-      {
-        path: 'register',
-        element: <RegisterPage />
-      },
-      {
-        path: 'password/forgot',
-        element: <PasswordForgotPage />
-      }
-    ]
-  };
-  
-  export default AuthRoutes;
+  path: '/auth/',
+  element: <MinimalLayout />,
+  children: [
+    {
+      path: 'login',
+      element: <LoginPage />
+    },
+    {
+      path: 'register',
+      element: <RegisterPage />
+    },
+    {
+      path: 'password/forgot',
+      element: <PasswordForgotPage />
+    }
+  ]
+};
+
+export default AuthRoutes;
