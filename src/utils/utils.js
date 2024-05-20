@@ -60,3 +60,19 @@ export function  getIconUrl({type, icon}){
   const storageDomain = "https://firebasestorage.googleapis.com/v0/b/mylingz.appspot.com/o";
   return `${storageDomain}/icons%2F${type}%2F${icon}.png?alt=media`;
 }
+
+export function generateUniqueString() {
+  let timestamp = Date.now().toString();
+  let randomChars = generateRandomChars(4);
+  let uniqueString = timestamp.substring(timestamp.length - 4) + randomChars;
+  return uniqueString;
+}
+
+function generateRandomChars(length) {
+  let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}

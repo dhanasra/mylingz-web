@@ -1,10 +1,13 @@
-import { Box, Button, FormHelperText, Grid, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
+import { Box, Button, FormHelperText, Grid, InputAdornment, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from 'yup';
 import { hideLoader, showLoader } from "../../store/reducers/app";
-import { saveLink } from "../../network/link_service";
+import { checkIdAvailability, saveLink } from "../../network/link_service";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { generateUniqueString } from "../../utils/utils";
+import { useEffect, useState } from "react";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 
 const CreateLinkPage = ()=>{
@@ -12,11 +15,26 @@ const CreateLinkPage = ()=>{
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [ uniqueString, setUniqueString ] = useState(generateUniqueString());
+  const [ available, setAvailable ] = useState(true);
+
+  useEffect(()=>{
+    const checkAvailability=async()=>{
+      if(uniqueString.trim()==""){
+        setAvailable(true);
+        return;
+      }
+      const isAvailable =  await checkIdAvailability(uniqueString);
+      setAvailable(isAvailable);
+    }
+    checkAvailability();
+  }, [uniqueString])
+
   return (
     <Formik
       initialValues={{
         title: '', 
-        backhalf: '', 
+        backhalf: uniqueString, 
         destination: ''
       }}
       validationSchema={Yup.object().shape({
@@ -26,6 +44,10 @@ const CreateLinkPage = ()=>{
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting, resetForm})=>{
         try {
+          if(!available){
+            return;
+          }
+
           dispatch(showLoader());
 
           const linkId = values.backhalf;
@@ -127,8 +149,20 @@ const CreateLinkPage = ()=>{
                           name="backhalf"
                           placeholder="Enter title"
                           value={values.backhalf}
-                          onChange={handleChange}
+                          onChange={(e)=>{
+                            setUniqueString(e.target.value);
+                            handleChange(e);
+                          }}
                           onBlur={handleBlur}
+                          endAdornment={
+                            <InputAdornment position="end">
+                              {
+                                available
+                                  ? <CheckCircleOutlined style={{color: "green", fontSize: "18px"}}/>
+                                  : <CloseCircleOutlined style={{color: "red", fontSize: "18px"}}/>
+                              }
+                            </InputAdornment>
+                          }
                           fullWidth
                       />
                       {touched.backhalf && errors.backhalf && (
@@ -140,9 +174,16 @@ const CreateLinkPage = ()=>{
                   </Stack>
                 </Grid>
               </Grid>
+              <Grid item xs={12} alignItems={"end"}>
+                {!available && (
+                  <FormHelperText error id={`standard-weight-helper-available`} sx={{textAlign: "end"}}>
+                    {'Custom back-half is not available. Try different one.'}
+                  </FormHelperText>
+                )}
+              </Grid>
               <Grid item xs={12} py={8} alignItems={"end"}> 
                 <Stack spacing={2} direction={"row"} justifyContent={"end"}>
-                  <Button type="submit" variant="contained" sx={{width: { xs: "100%", sm: "120px" }, py: 1.2, background: 'lightgrey', color: 'black'}}>
+                  <Button onClick={()=>navigate(-1)} variant="contained" sx={{width: { xs: "100%", sm: "120px" }, py: 1.2, background: 'lightgrey', color: 'black'}}>
                       Cancel
                   </Button>
                   <Button type="submit" variant="contained" sx={{width: { xs: "100%", sm: "120px" }, py: 1.2}}>

@@ -187,6 +187,23 @@ export const getLinkAnalytics = async ({ linkId }) => {
   }
 };
 
+
+export const checkIdAvailability = async (linkId) => {
+  try {
+
+    const q = query(collection(db, "LINKS"), where("short", "==", linkId))
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      return true;
+    }else{
+      return false;
+    }
+  } catch (error) {
+    return false;
+  }
+};
+
 const handleError = (error)=>{
   console.log(error)
   return responseHandler(false, error?.message, null, error.code ? error.code : 500);

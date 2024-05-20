@@ -11,7 +11,7 @@ export const AppRoutes = {
   forgotPassword: '/auth/password/forgot',
 
   links: '/app/links',
-  createLink: '/app/links',
+  createLink: '/app/links/create',
 
 
 }

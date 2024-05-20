@@ -1,13 +1,31 @@
-import { Box, Button, FormHelperText, Grid, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
+import { Box, Button, FormHelperText, Grid, InputAdornment, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import { updateLink } from "../../../network/link_service";
-import { useState } from "react";
+import { checkIdAvailability, updateLink } from "../../../network/link_service";
+import { useEffect, useState } from "react";
+import { generateUniqueString } from "../../../utils/utils";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 
 const EditLink = ({linkData, onSave, onCancel})=>{
 
   const [ loading, setLoading ] = useState(false);
+
+  const [ uniqueString, setUniqueString ] = useState(linkData?.short);
+  const [ available, setAvailable ] = useState(true);
+
+  useEffect(()=>{
+    const checkAvailability=async()=>{
+      if(uniqueString.trim()=="" || uniqueString.trim() == linkData?.short){
+        setAvailable(true);
+        return;
+      }
+      const isAvailable =  await checkIdAvailability(uniqueString);
+      setAvailable(isAvailable);
+    }
+    checkAvailability();
+  }, [uniqueString])
+
 
   return (
     <Formik
@@ -23,6 +41,10 @@ const EditLink = ({linkData, onSave, onCancel})=>{
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting})=>{
         try {
+          if(!available){
+            return;
+          }
+
           setLoading(true);
 
           const linkId = values.backhalf;
@@ -124,8 +146,20 @@ const EditLink = ({linkData, onSave, onCancel})=>{
                           name="backhalf"
                           placeholder="Enter title"
                           value={values.backhalf}
-                          onChange={handleChange}
                           onBlur={handleBlur}
+                          onChange={(e)=>{
+                            setUniqueString(e.target.value);
+                            handleChange(e);
+                          }}
+                          endAdornment={
+                            <InputAdornment position="end">
+                              {
+                                available
+                                  ? <CheckCircleOutlined style={{color: "green", fontSize: "18px"}}/>
+                                  : <CloseCircleOutlined style={{color: "red", fontSize: "18px"}}/>
+                              }
+                            </InputAdornment>
+                          }
                           fullWidth
                       />
                       {touched.backhalf && errors.backhalf && (
@@ -136,6 +170,13 @@ const EditLink = ({linkData, onSave, onCancel})=>{
                     </Stack>
                   </Stack>
                 </Grid>
+              </Grid>
+              <Grid item xs={12} alignItems={"end"}>
+                {!available && (
+                  <FormHelperText error id={`standard-weight-helper-available`} sx={{textAlign: "end"}}>
+                    {'Custom back-half is not available. Try different one.'}
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12} pt={10} alignItems={"end"}> 
                 <Stack spacing={3} direction={"row"} justifyContent={"end"}>
