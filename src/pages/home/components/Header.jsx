@@ -3,6 +3,7 @@ import LogoImg from '../../../assets/logo.png'
 import { useTheme } from "@emotion/react";
 import { MenuOutlined } from "@ant-design/icons";
 import { PLAYSTORE_URL } from "../../../utils/constants";
+import Logo from "../../../components/AppLogo";
 
 const Header = ({handleClick, handleDrawer})=>{
 
@@ -41,9 +42,8 @@ const Header = ({handleClick, handleDrawer})=>{
       borderRadius: "36px"
     }}>
       <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
-        <Stack direction={"row"} alignItems={"center"} sx={{marginRight: "16px"}}>
-          <Box component={"img"} src={LogoImg} width={"36px"} style={{marginLeft: "8px", marginRight: "8px"}}/>
-          <Typography variant="h5" color={"#653BED"} fontSize={28} fontWeight={800}>mylingz</Typography>
+        <Stack direction={"row"} alignItems={"center"} sx={{marginLeft: "16px"}}>
+          <Logo sx={{width: "120px"}}/>
         </Stack>
         {
           isMdScreen && <Stack direction={"row"} alignItems={"center"} justifyContent={"center"} width={"100%"}>
