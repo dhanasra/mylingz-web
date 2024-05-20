@@ -4,6 +4,7 @@ import { getLinks } from "../../network/link_service";
 import LinkItem from "./components/LinkItem";
 import LinksEmpty from "./components/LinksEmpty";
 import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "../../routes/Routes";
 
 const LinksListPage = ()=>{
 
@@ -28,7 +29,7 @@ const LinksListPage = ()=>{
         <Grid item xs={12}>
           <Stack justifyContent={"space-between"} direction={"row"}>
             <Typography variant="h3" fontWeight={400}>Links</Typography>
-            <Button onClick={()=>navigate('/app/links/create')} variant="contained">Create New</Button>
+            <Button onClick={()=>navigate(AppRoutes.createLink)} variant="contained">Create New</Button>
           </Stack>
         </Grid>
         {

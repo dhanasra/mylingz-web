@@ -11,6 +11,7 @@ import ShareDialog from "../../components/dialogs/ShareDialog"
 import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
 import ConfirmDialog from "../../components/dialogs/ConfirmDialog"
 import BarChart from "./components/BarChart"
+import { AppRoutes } from "../../routes/Routes"
 
 const LinkDetailsPage =()=>{
 
@@ -100,7 +101,7 @@ const LinkDetailsPage =()=>{
     const onDelete =async()=>{
       setOpenDelete(false);
       await deleteLink(data.id);
-      navigate('/app/links')
+      navigate(AppRoutes.links)
     }
 
     return (
@@ -117,7 +118,7 @@ const LinkDetailsPage =()=>{
       <ShareDialog open={openShare} handleCancel={()=>setOpenShare(false)} linkId={linkId}/>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Stack direction={"row"} spacing={1} sx={{cursor: "pointer"}} onClick={()=>navigate('/app/links')}>
+          <Stack direction={"row"} spacing={1} sx={{cursor: "pointer"}} onClick={()=>navigate(AppRoutes.links)}>
             <ArrowLeftOutlined/>
             <Typography>Back to list</Typography>
           </Stack>

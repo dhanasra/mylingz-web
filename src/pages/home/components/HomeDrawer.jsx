@@ -2,6 +2,7 @@ import { CloseOutlined } from '@ant-design/icons'
 import { Button, Divider, Drawer, IconButton, List, ListItemButton, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AppRoutes } from '../../../routes/Routes';
 
 function HomeDrawer({open, onClose, handleClick}) {
 
@@ -28,7 +29,7 @@ function HomeDrawer({open, onClose, handleClick}) {
             <CloseOutlined style={{color: "white"}}/>
           </IconButton>
           <Button
-            onClick={()=>navigate('/auth/login')}
+            onClick={()=>navigate(AppRoutes.login)}
             variant="outlined" sx={{width: "80px", borderColor: "white", borderRadius: "30px", fontWeight: 600, color: "white"}}>LOGIN</Button>
         </Stack>
         <ListItemButton onClick={()=>handleClick("home")} sx={{justifyContent: "center", my: 2}}>

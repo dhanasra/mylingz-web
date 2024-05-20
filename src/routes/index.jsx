@@ -4,6 +4,7 @@ import AuthRoutes from './AuthRoutes';
 import MainRoutes from './MainRoutes';
 import { LocalDB, USER, USER_ID } from '../network/db/local_db';
 import { useEffect } from 'react';
+import { AppRoutes } from './Routes';
 
 
 const CheckAuthAndStorage = ({ children }) => {
@@ -19,9 +20,9 @@ const CheckAuthAndStorage = ({ children }) => {
     const appRoutes = currentLocation.pathname.includes('app/');
 
     if(authRoute && user && userId){
-      navigate('/app/links');
+      navigate(AppRoutes.links);
     }else if(appRoutes && !(user && userId)){
-      navigate('/auth/login');
+      navigate(AppRoutes.login);
     }
     
   }, [navigate, currentLocation]);

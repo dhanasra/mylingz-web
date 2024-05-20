@@ -7,6 +7,7 @@ import Google from '../../../assets/icons/google.svg';
 import Github from '../../../assets/icons/github.svg';
 import { githubLogin, googleLogin } from '../../../network/auth_service';
 import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from '../../../routes/Routes';
 
 // ==============================|| FIREBASE - SOCIAL BUTTON ||============================== //
 
@@ -19,14 +20,14 @@ const FirebaseSocial = () => {
   const authWithGoogle = async()=>{
     const data =await googleLogin();
     if(data.success){
-      navigate('/app/links')
+      navigate(AppRoutes.links)
     }
   }
 
   const authWithGithub = async()=>{
     const data =await githubLogin();
     if(data.success){
-      navigate('/app/links')
+      navigate(AppRoutes.links)
     }
   }
   

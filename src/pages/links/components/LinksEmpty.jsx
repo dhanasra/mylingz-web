@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import LINKS_EMPTY from "../../../assets/app_images/share-link.png"
 import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "../../../routes/Routes";
 
 const LinksEmpty = ()=>{
 
@@ -34,7 +35,7 @@ const LinksEmpty = ()=>{
             }}
           >
             <Button
-              onClick={()=>navigate('/app/links/create')}
+              onClick={()=>navigate(AppRoutes.createLink)}
               variant="contained"
               sx={{
                 width: "130px"

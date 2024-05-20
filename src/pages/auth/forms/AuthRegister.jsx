@@ -30,6 +30,7 @@ import { strengthColor, strengthIndicator } from '../../../utils/password-streng
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { signup } from '../../../network/auth_service';
+import { AppRoutes } from '../../../routes/Routes';
 
 const AuthRegister = () => {
   const [level, setLevel] = useState();
@@ -81,7 +82,7 @@ const AuthRegister = () => {
             })
 
             if(data.success){
-              navigate('/app/links')
+              navigate(AppRoutes.links)
             }
 
           } catch (err) {

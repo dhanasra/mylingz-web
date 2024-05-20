@@ -29,6 +29,7 @@ import AnimateButton from '../../../components/AnimateButton';
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { login } from '../../../network/auth_service';
+import { AppRoutes } from '../../../routes/Routes';
 
 
 const AuthLogin = () => {
@@ -65,7 +66,7 @@ const AuthLogin = () => {
             console.log(data)
 
             if(data.success){
-              navigate('/app/links')
+              navigate(AppRoutes.links)
             }
 
           } catch (err) {

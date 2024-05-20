@@ -6,6 +6,7 @@ import { Grid, Stack, Typography } from '@mui/material';
 // project import
 import AuthRegister from './forms/AuthRegister';
 import AuthWrapper from './components/AuthWrapper';
+import { AppRoutes } from '../../routes/Routes';
 
 const RegisterPage = () => (
   <AuthWrapper>
@@ -13,7 +14,7 @@ const RegisterPage = () => (
       <Grid item xs={12}>
         <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
           <Typography variant="h3">Sign up</Typography>
-          <Typography component={Link} to="/auth/login" variant="body1" sx={{ textDecoration: 'none' }} color="primary">
+          <Typography component={Link} to={AppRoutes.login} variant="body1" sx={{ textDecoration: 'none' }} color="primary">
             Already have an account?
           </Typography>
         </Stack>

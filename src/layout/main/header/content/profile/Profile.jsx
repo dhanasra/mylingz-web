@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux';
 // import { clearCookies } from '../../../../../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { LocalDB } from '../../../../../network/db/local_db';
+import { AppRoutes } from '../../../../../routes/Routes';
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -58,7 +59,7 @@ function Profile() {
   const handleLogout = async () => {
     LocalDB.clearAll();
     setOpen(false);
-    navigate('/auth/login');
+    navigate(AppRoutes.login);
   };
 
   // const handleViewProfile = async () => {
