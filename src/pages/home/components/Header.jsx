@@ -1,5 +1,4 @@
 import { Box, Button, IconButton, Stack, Typography, useMediaQuery } from "@mui/material";
-import LogoImg from '../../../assets/logo.png'
 import { useTheme } from "@emotion/react";
 import { MenuOutlined } from "@ant-design/icons";
 import { PLAYSTORE_URL } from "../../../utils/constants";

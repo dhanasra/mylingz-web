@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import * as Yup from 'yup';
 import { checkIdAvailability, updateLink } from "../../../network/link_service";
 import { useEffect, useState } from "react";
-import { generateUniqueString } from "../../../utils/utils";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 
@@ -16,7 +15,7 @@ const EditLink = ({linkData, onSave, onCancel})=>{
 
   useEffect(()=>{
     const checkAvailability=async()=>{
-      if(uniqueString.trim()=="" || uniqueString.trim() == linkData?.short){
+      if(uniqueString.trim()==="" || uniqueString.trim() === linkData?.short){
         setAvailable(true);
         return;
       }
@@ -24,7 +23,7 @@ const EditLink = ({linkData, onSave, onCancel})=>{
       setAvailable(isAvailable);
     }
     checkAvailability();
-  }, [uniqueString])
+  }, [uniqueString, linkData])
 
 
   return (

@@ -20,7 +20,7 @@ const CreateLinkPage = ()=>{
 
   useEffect(()=>{
     const checkAvailability=async()=>{
-      if(uniqueString.trim()==""){
+      if(uniqueString.trim()===""){
         setAvailable(true);
         return;
       }
