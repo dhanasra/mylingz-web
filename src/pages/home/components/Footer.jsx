@@ -7,6 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
+import { URL_CONST } from '../../../constants/url_const'
 
 
 function Footer({handleProductClick}) {
@@ -82,11 +83,11 @@ function Footer({handleProductClick}) {
   const openSocialMedia =(key)=>{
     let link = '';
     if(key==="instagram"){
-      link = "";
+      link = URL_CONST.INSTAGRAM_PAGE;
     }else if(key==="linkedin"){
-      link = "https://www.linkedin.com/company/buizcard";
+      link = URL_CONST.LINKEDIN_PAGE;
     }else{
-      link = "https://twitter.com/buizcard_ai";
+      link = URL_CONST.TWITTER_PAGE;
     }
     window.open(link, "_blank");
   }
@@ -188,7 +189,7 @@ function Footer({handleProductClick}) {
         <Stack alignItems={"center"}>
           <Typography variant="body2" color={"#6f6f6f"}>Powered By</Typography>
           <Typography
-            onClick={()=>window.open("https://spiderlingz.com", "_blank")}
+            onClick={()=>window.open(URL_CONST.COMPANY, "_blank")}
             sx={{cursor: "pointer"}}
             variant="body1" fontWeight={700} color={"#5b3fa9"}>SPIDERLINGZ</Typography>
         </Stack>

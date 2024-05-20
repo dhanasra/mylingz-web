@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { URL_CONST } from "../../constants/url_const";
 
 const AboutUs = () => {
   return (
@@ -45,7 +46,7 @@ const AboutUs = () => {
         <li>Delivery & Support</li>
       </ul>
       <Typography>---</Typography>
-      <Typography>If you have any questions about Spiderlingz or would like to get in touch, please visit our website at <a href="https://spiderlingz.com" style={{ color: 'blue', textDecoration: 'underline' }}>spiderlingz.com</a> or contact us at our headquarters in Trichy, Tamilnadu.</Typography>
+      <Typography>If you have any questions about Spiderlingz or would like to get in touch, please visit our website at <a href={URL_CONST.COMPANY} style={{ color: 'blue', textDecoration: 'underline' }}>spiderlingz.com</a> or contact us at our headquarters in Trichy, Tamilnadu.</Typography>
     </Box>
   )
 }

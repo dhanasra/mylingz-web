@@ -3,12 +3,13 @@ import MainCard from "../MainCard";
 import { EmailShareButton, FacebookShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 import { IoMdOpen } from "react-icons/io";
 import { useTheme } from "@emotion/react";
+import { URL_CONST } from "../../constants/url_const";
 
 const ShareDialog =({open, handleCancel, linkId})=>{
 
     const theme = useTheme();
 
-    const cardLink = `https://mylingz.web.app/${linkId}`;
+    const cardLink = `${URL_CONST.DOMAIN}/${linkId}`;
 
     return (
         <Dialog open={open} onClose={handleCancel}>

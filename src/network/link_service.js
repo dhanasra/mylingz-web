@@ -2,6 +2,7 @@ import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } 
 import { LocalDB, USER_ID } from "./db/local_db";
 import { db } from "./firebase";
 import responseHandler from "../utils/response-handler";
+import { URL_CONST } from "../constants/url_const";
 
 export const saveLink = async ({ title, short, url, bioLink=false, bioLinkBtnLabel=null }) => {
   try {
@@ -11,7 +12,7 @@ export const saveLink = async ({ title, short, url, bioLink=false, bioLinkBtnLab
     console.log(Date.now())
 
     const linkData = {  
-      domain: "https://mylingz.web.app",
+      domain: URL_CONST.DOMAIN,
       url,
       title,
       short,

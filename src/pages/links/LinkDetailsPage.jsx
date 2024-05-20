@@ -12,6 +12,7 @@ import EditLinkDialog from "../../components/dialogs/EditLinkDialog"
 import ConfirmDialog from "../../components/dialogs/ConfirmDialog"
 import BarChart from "./components/BarChart"
 import { AppRoutes } from "../../routes/Routes"
+import { URL_CONST } from "../../constants/url_const"
 
 const LinkDetailsPage =()=>{
 
@@ -89,7 +90,7 @@ const LinkDetailsPage =()=>{
 
     const copyLinkToClipboard =async()=>{
       setCopied(true);
-      await navigator.clipboard.writeText(`https://mylingz.web.app/${data?.short}`)
+      await navigator.clipboard.writeText(`${URL_CONST.DOMAIN}/${data?.short}`)
       setTimeout(()=>setCopied(false), 2000);
     }
 
